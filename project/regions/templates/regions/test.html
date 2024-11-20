@@ -1,11 +1,39 @@
-<form method="post">
-    {% csrf_token %}
-    <p><strong>질문 {{ current_question }}:</strong> {{ question.question }}</p>
-    {% for choice in question.choices %}
-        <label>
-            <input type="radio" name="choice" value="{{ forloop.counter0 }}">
-            {{ choice.text }}
-        </label><br>
-    {% endfor %}
-    <button type="submit">다음</button>
-</form>
+{% load static %}
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>맞춤 지역 선택지</title>
+    <link rel="stylesheet" href="{% static "css/test.css" %}">
+  </head>
+  <body>
+    <form method="post">
+      {% csrf_token %} {% comment %} <strong>질문 {{ current_question }}:</strong> {% endcomment %}
+      <div class="question-box">
+        <div class="question">{{ question.question }}</div>
+      </div>
+
+      <div class="img-box"></div>
+
+      <div class="select-container">
+        <div class="row">
+          {% for choice in question.choices %}
+            <div class="select-box">
+              <input type="radio" name="choice" id="{{ forloop.counter0 }}" value="{{ forloop.counter0 }}" onclick='selectBox(event)' />
+              <label for="{{ forloop.counter0 }}">{{ choice.text }}</label>
+            </div>
+            {% if forloop.counter|divisibleby:2 %}
+              </div><div class="row">
+            {% endif %}
+          {% endfor %}
+        </div>
+      </div>
+      
+
+      <button type="submit"><img src="{% static "img/next_btn.png" %}" class="next"></button>
+    </form>
+
+    <script src="{% static "js/test.js" %}"></script>
+  </body>
+</html>

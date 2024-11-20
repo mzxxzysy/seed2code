@@ -3,6 +3,9 @@ body {
   background-repeat: no-repeat;
   display: flex;
   justify-content: center;
+
+  width: 414px;
+  height: 736px;
 }
 
 form {
@@ -36,11 +39,9 @@ form {
   font-size: 20px;
 }
 
-.img-box {
+.img-box img {
   width: 270px;
   height: 243px;
-
-  background-color: #c06a89;
   margin: 20px 0;
 }
 

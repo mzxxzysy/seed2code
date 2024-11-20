@@ -1,0 +1,9 @@
+.region_result_info {
+  width: 371px;
+  height: 152px;
+  background-image: url("../img/regions_result_info.png");
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

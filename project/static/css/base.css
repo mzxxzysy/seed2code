@@ -32,6 +32,8 @@ body {
 
 .give_bg {
   background-image: url("../img/background.png");
+  height: 736px;
+  position: relative;
 }
 
 .input input {
@@ -66,10 +68,11 @@ body {
   height: 106px;
   background-image: url("../img/button.png");
   border: none;
-  background-color: white;
+  background-color: rgb(0, 0, 0, 0);
   display: flex;
   justify-content: center;
   align-items: center;
+  text-align: center;
 
   :hover {
     cursor: pointer;
@@ -84,18 +87,19 @@ body {
 
 /* navbar */
 .nav_bar {
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  width: 100%;
-  display: flex;
-  z-index: 40;
+  background-image: url("../img/nav_bg.png");
+  background-size: 414px 80px;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: 1000;
+
+  position: relative;
+  bottom: 80px;
 }
 
 .nav_select {
-  position: relative;
-  width: 100%;
-  z-index: 10;
+  display: flex;
+  justify-content: space-evenly;
 }
 
 .nav_icon {

@@ -14,7 +14,19 @@
         <div class="question">{{ question.question }}</div>
       </div>
 
-      <div class="img-box"></div>
+      <div class="img-box">    
+        {% if current_question == 1 %}
+        <img src="{% static 'img/question_1.png' %}">
+        {% elif current_question == 2 %}
+        <img src="{% static 'img/question_2.png' %}">
+        {% elif current_question == 3 %}
+        <img src="{% static 'img/question_3.png' %}">
+        {% elif current_question == 4 %}
+        <img src="{% static 'img/question_4.png' %}">
+        {% elif current_question == 5 %}
+        <img src="{% static 'img/question_5.png' %}">
+        {% endif %}
+    </div>
 
       <div class="select-container">
         <div class="row">

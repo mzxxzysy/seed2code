@@ -1,0 +1,9 @@
+<div class="container">
+    <h2>{{ restaurant.name }}</h2>
+    <p>음식점에서 {{ restaurant.price }}원을 사용했습니다.</p>
+    <p>현재 남은 돈: {{ game.current_money }}원</p>
+    <form method="POST">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-primary">밤이 되었습니다</button>
+    </form>
+</div>

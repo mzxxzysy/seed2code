@@ -1,0 +1,12 @@
+<div class="container">
+    <h1>병원 방문</h1>
+    <div>
+        <h2>{{ hospital.name }}</h2>
+        <p>병원 비용: {{ hospital.price }}원</p>
+        <p>{{ hospital.description }}</p>
+    </div>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit">다음으로</button>
+    </form>
+</div>

@@ -1,0 +1,42 @@
+<div class="container">
+    <h2>축제의 달</h2>
+    <p>{{ game.current_month }}월 {% if game.is_morning == 1 %}오전{% elif game.is_morning == 2 %}오후{% endif %}</p>
+    <p>총 자산: {{ game.current_money }}원</p> 
+    <p>직업: {{ game.job }}</p>
+    <p>집: {{ game.house }}</p>
+    
+    {% if game.is_morning == 1 %}
+    <div class="festival-content">
+        <h3>청송 사과축제</h3>
+        <p>청송의 대표적인 특산물인 사과를 주제로 한 축제입니다.</p>
+        <p>맛있는 사과도 맛보고, 다양한 체험도 즐겨보세요!</p>
+        <div class="festival-details">
+            <ul>
+                <li>사과 품평회</li>
+                <li>사과 따기 체험</li>
+                <li>사과 음식 만들기</li>
+                <li>사과 테마 포토존</li>
+            </ul>
+        </div>
+    </div>
+    {% elif game.is_morning == 2 %}
+    <div class="festival-content">
+        <h3>얼음골 축제</h3>
+        <p>한여름에도 얼음이 어는 신비한 청송 얼음골을 배경으로 한 축제입니다.</p>
+        <p>시원한 얼음골에서 특별한 체험을 해보세요!</p>
+        <div class="festival-details">
+            <ul>
+                <li>얼음골 탐방</li>
+                <li>천연 냉장고 체험</li>
+                <li>여름 특산물 시식</li>
+                <li>얼음골 사진전</li>
+            </ul>
+        </div>
+    </div>
+    {% endif %}
+
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-primary">다음으로</button>
+    </form>
+</div>

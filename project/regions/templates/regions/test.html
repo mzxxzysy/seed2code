@@ -1,0 +1,11 @@
+<form method="post">
+    {% csrf_token %}
+    <p><strong>질문 {{ current_question }}:</strong> {{ question.question }}</p>
+    {% for choice in question.choices %}
+        <label>
+            <input type="radio" name="choice" value="{{ forloop.counter0 }}">
+            {{ choice.text }}
+        </label><br>
+    {% endfor %}
+    <button type="submit">다음</button>
+</form>

@@ -1,0 +1,37 @@
+<div class="container">
+    <h2>오후 일정</h2>
+    <p>{{ game.current_month }}월 오후</p>
+    <p>총 자산: {{ game.current_money }}원</p> 
+    <p>직업: {{ game.job }}</p>
+    <p>집: {{ game.house }}</p>
+    <form method="post">
+        {% csrf_token %}
+        
+        {% if month == 1 %}
+            <h3>맛집 탐방</h3>
+            {% for restaurant in restaurants %}
+                <div class="restaurant-option">
+                    <input type="radio" name="restaurant" value="{{ restaurant.name }}" required>
+                    <label>{{ restaurant.name }} ({{ restaurant.price }}원)</label>
+                </div>
+            {% endfor %}
+        {% elif month == 2 %}
+            <h3>여가 활동</h3>
+            <div class="place-categories">
+                <input type="radio" name="category" value="mountain" required> 산/계곡
+                <input type="radio" name="category" value="nature"> 자연 명소
+                <input type="radio" name="category" value="museum"> 박물관/공원
+            </div>
+        {% elif month == 4 %}
+            <h3>요리 재료 선택</h3>
+            {% for ingredient in ingredients %}
+                <div class="ingredient-option">
+                    <input type="checkbox" name="ingredients" value="{{ ingredient.name }}">
+                    <label>{{ ingredient.name }} ({{ ingredient.price }}원)</label>
+                </div>
+            {% endfor %}
+        {% endif %}
+        
+        <button type="submit">선택하기</button>
+    </form>
+</div>

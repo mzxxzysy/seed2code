@@ -1,0 +1,26 @@
+html {
+  background-image: url("../img/signup_bg.png");
+  background-repeat: no-repeat;
+}
+
+.signup {
+  margin-top: 160px;
+}
+
+.input input {
+  margin: 5px 0 15px;
+}
+
+.go_login {
+  display: flex;
+  flex-direction: row;
+
+  position: relative;
+  margin-top: 18px;
+}
+
+.go_login a {
+  margin-left: 5px;
+  color: #438740;
+  text-decoration: none;
+}

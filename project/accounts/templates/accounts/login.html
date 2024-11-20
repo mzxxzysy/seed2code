@@ -1,9 +1,44 @@
-<body>
-    <h2>로그인</h2>
-        <form method="post" action={% url 'accounts:login' %}>
+{% extends 'base.html' %} {% load static %} {% block title %}로그인{% endblock %} 
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/login.css' %}" />
+{% endblock %}
+{% block content %}
+    <header>
+        <img src="{% static "img/logo.png" %}">
+        <div class="header_text">
+            <div class="ht1">환영합니다</div>
+        </div>
+    </header>
+        <form method="post" action={% url 'accounts:login' %} class="form">
             {% csrf_token %}
-            {{ form.as_p }}
-            <button type="submit">LOGIN</button>
+            <div class="input">
+                <div>ID</div>
+                <input type="text" id="id_username" name="username" placeholder="아이디을 입력해주세요"></div>
+            <div class="input">
+                <div>Password</div>
+                <input type="password" id="id_password" name="password" placeholder="비밀번호을 입력해주세요"></div>
+            
+            {% comment %} {% if messages %}
+                <ul class="messages">
+                    {% for message in messages %}
+                        <li class="{% if message.tags %}{{ message.tags }}{% endif %}">
+                            {{ message }}
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% endif %} {% endcomment %}
+
+            <button type="submit" class="accounts_btn">
+                <div class="accounts_text">로그인</div>
+            </button>
         </form>
-        <p><a href="{% url 'accounts:signup' %}">회원가입</a></p>
-</body>
+
+        
+
+
+        <div class="go_signup">
+            <div class="go_su_btn">계정이 없으신가요?</div>
+            <a href="{% url 'accounts:signup' %}">가입하기</a>
+        </div>
+{% endblock %}
+

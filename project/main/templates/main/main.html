@@ -1,11 +1,11 @@
-{% load static %}
-
-{% if user.is_authenticated %}
-    <p>{{ custom_user.nickname }} 님, 지금까지 총 {{ custom_user.play_count }}번의 삶을 살았습니다.</p>
-    <p>마지막으로 플레이한 지역: {{ custom_user.last_region }}</p>
-    <p><a href="{% url 'accounts:logout' %}">로그아웃</a></p>
-    <!-- 프로필 이미지 -->
-    <img src="{% static custom_user.profile_image %}" alt="Profile Image" />
+{% extends 'base.html' %} {% load static %} {% block title %}로그인{% endblock %} {% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/main.css' %}" />
+{% endblock %} {% block content %} {% if user.is_authenticated %}
+<p>{{ custom_user.nickname }} 님, 지금까지 총 {{ custom_user.play_count }}번의 삶을 살았습니다.</p>
+<p>마지막으로 플레이한 지역: {{ custom_user.last_region }}</p>
+<p><a href="{% url 'accounts:logout' %}">로그아웃</a></p>
+<!-- 프로필 이미지 -->
+<img src="{% static custom_user.profile_image %}" alt="Profile Image" />
 {% else %}
-    <p><a href="{% url 'accounts:login' %}">로그인</a></p>
-{% endif %}
+<p><a href="{% url 'accounts:login' %}">로그인</a></p>
+{% endif %} {% endblock %}

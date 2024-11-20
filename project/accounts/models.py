@@ -6,7 +6,7 @@ class CustomUser(models.Model):
     nickname = models.CharField(max_length=50)
     play_count = models.IntegerField(default=0)
     last_region = models.CharField(max_length=100, null=True, blank=True)
-    profile_image = models.CharField(max_length=100, default='img/홈페이지일러.png')
+    profile_image = models.CharField(max_length=100, default='img/default_profile.png')
 
     def __str__(self):
         return f"{self.user.username}"

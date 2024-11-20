@@ -3,21 +3,12 @@ from django.contrib.auth.decorators import login_required
 
 QUESTIONS = [
     {
-        "question": "봄, 여름, 가을, 겨울 중 어느 계정을 좋아하시나요?",
+        "question": "봄, 여름, 가을, 겨울 중 어느 계절을 좋아하시나요?",
         "choices": [
             {"text": "봄", "scores": {"청송": 2, "곡성": 2}},
             {"text": "여름", "scores": {"곡성": 4}},
             {"text": "가을", "scores": {"청송": 4}},
             {"text": "겨울", "scores": {"청송": 3, "곡성": 1}},
-        ],
-    },
-    {
-        "question": "오늘은 놀러가는 날! 어디가 더 끌리나요?",
-        "choices": [
-            {"text": "바다", "scores": {}},
-            {"text": "산", "scores": {"청송": 4, "곡성": 1}},
-            {"text": "계곡", "scores": {"청송": 4, "곡성": 3}},
-            {"text": "강", "scores": {"곡성": 4}},
         ],
     },
     {
@@ -27,6 +18,15 @@ QUESTIONS = [
             {"text": "밤", "scores": {}},
             {"text": "인삼", "scores": {}},
             {"text": "매운탕", "scores": {"곡성": 4}},
+        ],
+    },
+        {
+        "question": "오늘은 놀러가는 날! 어디가 더 끌리나요?",
+        "choices": [
+            {"text": "바다", "scores": {}},
+            {"text": "산", "scores": {"청송": 4, "곡성": 1}},
+            {"text": "계곡", "scores": {"청송": 4, "곡성": 3}},
+            {"text": "강", "scores": {"곡성": 4}},
         ],
     },
     {
@@ -55,6 +55,7 @@ def test(request, question_number):
     scores = request.session.get('scores', {"청송": 0, "곡성": 0})
 
     if request.method == "POST":
+        print(question_number)
         selected_choice = request.POST.get("choice")
         if selected_choice:
             choice = QUESTIONS[current_question]["choices"][int(selected_choice)]

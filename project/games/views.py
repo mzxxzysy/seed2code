@@ -25,7 +25,6 @@ def job_detail(request, job_id):
         game = Game.objects.create(
             user=custom_user,
             job=job,
-            current_money=0,
             hospital_visited=random.randint(1, 4)
         )
 
@@ -70,6 +69,11 @@ def select_house(request, game_id):
 
 @login_required
 def game_start(request, month, time):
+    if month > 4:  # 5월이 되면 엔딩으로 리다이렉트
+        custom_user = request.user.customuser
+        game = Game.objects.filter(user=custom_user, is_active=True).latest('created_at')
+        return redirect('games:game_ending', game_id=game.id)
+        
     selection_data = load_selection()
     custom_user = request.user.customuser
     game = Game.objects.filter(user=custom_user, is_active=True).latest('created_at')
@@ -79,15 +83,18 @@ def game_start(request, month, time):
     
     game.current_month = month
     game.is_morning = time
-    
+
     if time == 1 and prev_month < month:
         game.current_money += game.job.salary
         game.current_money -= game.house.monthly_rent
+        game.current_money -= (game.house.deposit)/4
+        game.current_money = (int)(game.current_money)
+        
+        if game.current_money < 0:
+            game.save()
+            return redirect('games:game_fail', game_id=game.id)
     
     game.save()
-    
-    if month == 5:
-        return 
 
     # Morning (time=1)
     if time == 1:
@@ -140,13 +147,20 @@ def game_start(request, month, time):
 
         if request.method == 'POST':
             if month == 1:
-                restaurant_name = request.POST.get('restaurant')
-                selected_restaurant = next(
-                    (r for r in selection_data['restaurants'] if r['name'] == restaurant_name), 
-                    None
-                )
-                if selected_restaurant:
-                    game.current_money -= selected_restaurant['price']
+                restaurant_data = request.POST.get('restaurant')
+                # JSON 문자열을 딕셔너리로 변환했다면, 이름만 추출
+                if isinstance(restaurant_data, str):
+                    try:
+                        restaurant_dict = json.loads(restaurant_data)
+                        restaurant_name = restaurant_dict['name']
+                    except (json.JSONDecodeError, KeyError):
+                        restaurant_name = restaurant_data
+                else:
+                    restaurant_name = restaurant_data
+        
+                return redirect('games:restaurant_detail', 
+                    game_id=game.id, 
+                    restaurant_name=restaurant_name)
                 
             elif month == 2:
                 category = request.POST.get('category')
@@ -161,6 +175,11 @@ def game_start(request, month, time):
                     for ingredient in selected_ingredients
                 )
                 game.current_money -= total_price
+                
+                if game.current_money < 0:
+                    game.save()
+                    return redirect('games:game_fail', game_id=game.id)
+                    
                 game.save()
                 
                 cooking_result = get_cooking_result(selected_ingredients)
@@ -170,11 +189,6 @@ def game_start(request, month, time):
                 }
                 return render(request, 'games/cooking_result.html', context)
             
-            game.save()
-            
-            if game.hospital_visited == month:
-                return redirect('games:hospital_visit', game_id=game.id)
-
             return redirect('games:night_transition', month=month)
             
         context = {
@@ -215,6 +229,38 @@ def hospital_visit(request, game_id):
     game.save()
     
     return render(request, 'games/hospital.html', {'hospital': selected_hospital, 'game': game})
+
+@login_required
+def restaurant_detail(request, game_id, restaurant_name):
+    selection_data = load_selection()
+    game = get_object_or_404(Game, id=game_id)
+    
+    if game.user != request.user.customuser:
+        raise PermissionDenied("권한이 없습니다.")
+    
+    selected_restaurant = next(
+        (r for r in selection_data['restaurants'] if r['name'] == restaurant_name), 
+        None
+    )
+
+    if selected_restaurant:
+        game.current_money -= selected_restaurant['price']
+        if game.current_money < 0:
+            game.save()
+            return redirect('games:game_fail', game_id=game.id)
+    game.save()
+    
+    if request.method == 'POST':
+        if game.hospital_visited == 1:
+            return redirect('games:hospital_visit', game_id=game.id)
+        return redirect('games:night_transition', month=1)
+        
+    context = {
+        'game': game,
+        'restaurant': selected_restaurant
+    }
+    
+    return render(request, 'games/restaurant_detail.html', context)
 
 def get_cooking_result(selected_ingredients):
     if set(selected_ingredients) == {"떡국떡"} or set(selected_ingredients) >= {"떡국떡", "곶감", "미꾸라지"}:
@@ -259,7 +305,20 @@ def game_ending(request, game_id):
     
     context = {
         'game': game,
-        'total_games': Game.objects.filter(user=custom_user).count(),
         'region': '청송군',
+        'custom_user': custom_user
     }
     return render(request, 'games/ending.html', context)
+
+def game_fail(request, game_id):
+    custom_user = request.user.customuser
+    game = get_object_or_404(Game, id=game_id)
+    game.is_active = False
+    game.save()
+    
+    context = {
+        'game': game,
+        'custom_user': custom_user
+    }
+
+    return render(request, 'games/fail.html', context)

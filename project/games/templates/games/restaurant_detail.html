@@ -1,9 +1,24 @@
-<div class="container">
-    <h2>{{ restaurant.name }}</h2>
-    <p>음식점에서 {{ restaurant.price }}원을 사용했습니다.</p>
-    <p>현재 남은 돈: {{ game.current_money }}원</p>
-    <form method="POST">
-        {% csrf_token %}
-        <button type="submit" class="btn btn-primary">밤이 되었습니다</button>
-    </form>
+
+<div class="container mx-auto px-4 py-8">
+    <div class="max-w-2xl mx-auto bg-white rounded-lg shadow-md p-6">
+        <h1 class="text-2xl font-bold mb-4">{{ restaurant.name }}</h1>
+
+        <div class="mb-6">
+            <p class="text-lg mb-2">주문하신 메뉴의 가격은 {{ restaurant.price }}만원입니다.</p>
+            <p class="text-gray-600">총 자산: {{ game.current_money }}만원</p>
+        </div>
+
+        {% if restaurant.description %}
+        <div class="mb-6">
+            <p class="text-gray-700">{{ restaurant.description }}</p>
+        </div>
+        {% endif %}
+
+        <form method="post">
+            {% csrf_token %}
+            <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded">
+                다음으로
+            </button>
+        </form>
+    </div>
 </div>

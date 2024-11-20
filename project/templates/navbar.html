@@ -1,0 +1,34 @@
+{% load static %}
+
+<div class="nav_bar">
+  <div class="nav_select">
+    <a href="{% url 'main:main' %}">
+      {% if '/main' in request.path %}
+      <img src="{% static 'img/nav_home_on.png' %}" class="nav_icon" />
+      {% else %}
+      <img src="{% static 'img/nav_home_off.png' %}" class="nav_icon" />
+      {% endif %}
+    </a>
+    <a href="{% url 'games:select_job' %}">
+      {% if '/games' in request.path %}
+      <img src="{% static 'img/nav_play_on.png' %}" class="nav_icon" />
+      {% else %}
+      <img src="{% static 'img/nav_play_off.png' %}" class="nav_icon" />
+      {% endif %}
+    </a>
+    <a href="">
+      {% comment %} {% url 'records:list' %} {% endcomment %} {% if '/records' in request.path %}
+      <img src="{% static 'img/nav_record_on.png' %}" class="nav_icon" />
+      {% else %}
+      <img src="{% static 'img/nav_record_off.png' %}" class="nav_icon" />
+      {% endif %}
+    </a>
+    <a href="">
+      {% comment %} {% url 'datas:list' %} {% endcomment %} {% if '/datas' in request.path %}
+      <img src="{% static 'img/nav_info_on.png' %}" class="nav_icon" />
+      {% else %}
+      <img src="{% static 'img/nav_info_off.png' %}" class="nav_icon" />
+      {% endif %}
+    </a>
+  </div>
+</div>

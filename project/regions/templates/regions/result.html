@@ -1,2 +1,8 @@
+{% extends 'base.html' %} {% load static %} {% block title %}맞춤 지역 결과{% endblock %} {% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/result.css' %}" />
+{% endblock %} {% block content %}
+<div class="region_result_info">{{ custom_user.nickname }} 님과 가장 어울리는 지역은</div>
 <h2>추천 지역: {{ recommended_region }}</h2>
 <p><a href="{% url 'main:main' %}">메인 화면 돌아가기</a></p>
+
+{% endblock %}

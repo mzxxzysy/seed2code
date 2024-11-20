@@ -3,6 +3,7 @@ from django.contrib.auth import login, logout, authenticate
 from accounts.forms import SignUpForm
 from django.contrib.auth.forms import AuthenticationForm
 from accounts.models import CustomUser
+from django.contrib import messages
 
 def signup_view(request):
     if request.method == "GET":
@@ -32,6 +33,8 @@ def login_view(request):
             if user is not None:
                 login(request, user)
                 return redirect('main:main')
+            # else:
+            #     messages.error(request, "존재하지 않는 아이디 혹은 잘못된 비밀번호입니다.")
     else:
         form = AuthenticationForm()
     return render(request, 'accounts/login.html', {'form': form})

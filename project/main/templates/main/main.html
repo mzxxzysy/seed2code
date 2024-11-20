@@ -1,12 +1,29 @@
-{% load static %}
+{% extends 'base.html' %} {% load static %} {% block title %}home{% endblock %} {% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/main.css' %}" />
+{% endblock %} {% block content %} {% if user.is_authenticated %}
+<header>
+  <a href="{% url 'accounts:logout' %}" class="logout"> <img src="{% static "img/logout.png" %}"> </a>
+  <div class="user_info">
+    <img src="{% static custom_user.profile_image %}" class="profile" alt="Profile Image" />
+    <div class="main_info">
+      <div class="nickname">{{ custom_user.nickname }} 님</div>
+      <div>지금까지 <span>총 {{ custom_user.play_count }}번의 삶</span>을 살았습니다.</div>
+    </div>
+  </div>
+</header>
 
-{% if user.is_authenticated %}
-    <p>{{ custom_user.nickname }} 님, 지금까지 총 {{ custom_user.play_count }}번의 삶을 살았습니다.</p>
-    <p>마지막으로 플레이한 지역: {{ custom_user.last_region }}</p>
-    <p><a href="{% url 'regions:test' question_number=1 %}">맞춤 지역 선택</a></p>
-    <p><a href="{% url 'accounts:logout' %}">로그아웃</a></p>
-    <!-- 프로필 이미지 -->
-    <img src="{% static custom_user.profile_image %}" alt="Profile Image" />
+<div class="accounts_btn">3번째 삶은 <span>&nbsp;어디서&nbsp; </span> 시작할까요?</div>
+<div class="main_main">
+  <a href=""><img src="{% static "img/select_region.png" %}"></a>
+  <a href="{% url 'regions:test' question_number=1 %}"><img src="{% static "img/go_test.png" %}"></a>
+</div>
+
+{% comment %}
+<p>마지막으로 플레이한 지역: {{ custom_user.last_region }}</p>
+{% endcomment %}
+
+<!-- 프로필 이미지 -->
+
 {% else %}
-    <p><a href="{% url 'accounts:login' %}">로그인</a></p>
-{% endif %}
+<p><a href="{% url 'accounts:login' %}">로그인</a></p>
+{% endif %} {% endblock %}

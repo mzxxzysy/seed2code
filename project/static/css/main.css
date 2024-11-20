@@ -1,0 +1,75 @@
+header {
+  width: 100%;
+  height: 160px;
+  background-image: url("../img/main_info.png");
+  background-size: 373px 156px;
+  background-repeat: no-repeat;
+  background-position: center;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  z-index: 1;
+  position: relative;
+  top: 20px;
+}
+
+.accounts_btn {
+  z-index: 5;
+}
+
+.logout img {
+  width: 78px;
+  height: 20px;
+}
+
+.logout {
+  position: relative;
+  bottom: 21px;
+  left: 122px;
+}
+
+.user_info {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+
+  position: relative;
+  bottom: 15px;
+}
+
+.profile {
+  width: 77px;
+  height: 71px;
+}
+
+.nickname {
+  color: #c06a89;
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+span {
+  color: #c06a89;
+}
+
+.main_main {
+  width: 100%;
+  height: 300px;
+  background-image: url("../img/homepage.png");
+  background-size: 300px 300px;
+  background-repeat: no-repeat;
+  background-position: center;
+
+  display: flex;
+  justify-content: space-between;
+}
+
+.main_main a {
+  height: 114px;
+  position: relative;
+  top: 150px;
+}

@@ -1,14 +1,20 @@
+{% load static %}
+
 <div class="container">
     <h2>오전 일정</h2>
     <p>{{ game.current_month }}월 오전</p>
-    <p>총 자산: {{ game.current_money }}원</p> 
+    <p>총 자산: {{ game.current_money }}만원</p> 
     <p>직업: {{ game.job }}</p>
+    {% if game.house.image %}
+        <img src="{% static game.house.image %}" alt="{{ game.house }}">
+    {% endif %}
     <p>집: {{ game.house }}</p>
-    {% for dialogue in dialogues %}
-        <div class="dialogue">
-            <p>{% if forloop.first %}{{ user_nickname }}{% endif %}{{ dialogue }}</p>
-        </div>
-    {% endfor %}
+
+    {% if game.job.work_image %}
+        <img src="{% static game.job.work_image %}" alt="{{ game.job }}">
+    {% endif %}
+    
+    <p>일하는 중!</p>
     <form method="post">
         {% csrf_token %}
         <button type="submit">다음으로</button>

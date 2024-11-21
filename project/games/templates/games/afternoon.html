@@ -12,7 +12,7 @@
             {% for restaurant in restaurants %}
                 <div class="restaurant-option">
                     <input type="radio" name="restaurant" value="{{ restaurant.name }}" required>
-                    <label>{{ restaurant.name }} ({{ restaurant.price }}원)</label>
+                    <label>{{ restaurant.name }} ({{ restaurant.price }}만원)</label>
                 </div>
             {% endfor %}
             <button type="submit">선택하기</button>

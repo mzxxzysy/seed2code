@@ -60,3 +60,7 @@ button {
     cursor: pointer;
   }
 }
+
+.game_contents {
+  height: 40vh;
+}

@@ -1,7 +1,10 @@
 {% extends 'gamebase.html' %} {% load static %} {% block title %}직업 선택{% endblock %} {% block extra_css %}
 <link rel="stylesheet" href="{% static 'css/gamebase.css' %}" />
 <link rel="stylesheet" href="{% static 'css/select_job.css' %}" />
-{% endblock %} {% block game_content %}
+{% endblock %} {%block game_info%}
+<div>여기는 경상북도 청송군입니다.</div>
+<div>3번째 생의 직업을 골라주세요.</div>
+{%endblock%} {% block game_content %}
 
 <form method="post">
   {% csrf_token %}
@@ -37,4 +40,7 @@
   }
 </script>
 
+{% endblock %} {%block game_info2%}
+<div>직종과 월급은 경북 청송군 일자리 지원센터를</div>
+<div>참고하였습니다.</div>
 {% endblock %}

@@ -9,5 +9,22 @@
 
 <div class="game_info">{% block game_info %} {% endblock %}</div>
 <div class="game_contents">{% block game_content %} {% endblock %}</div>
-<div class="game_info2">{% block game_info2 %} {% endblock %}</div>
+<div class="game_info2">
+  {% block game_info2 %} {% endblock %} {% if game.house %}
+  <div class="user_datas">
+    <div class="user_data">
+      <img src="{% static "img/coin.png" %}">
+      <div>{{ game.current_money }}만원</div>
+    </div>
+    <div class="user_data">
+      <img src="{% static game.house.image %}" />
+      <div>{{ game.house }} 거주</div>
+    </div>
+    <div class="user_data">
+      <img src="{% static "img/job.png" %}">
+      <div>{{ game.job }}</div>
+    </div>
+  </div>
+  {% endif %}
+</div>
 {% endblock %}

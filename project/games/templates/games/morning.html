@@ -1,22 +1,21 @@
-{% load static %}
+{% extends 'gamebase.html' %} {% load static %} {% block title %}직업 선택{% endblock %} {% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/gamebase.css' %}" />
+<link rel="stylesheet" href="{% static 'css/morning.css' %}" />
+{% endblock %}{% block game_info %}
+<div>아침입니다!</div>
+<div>직장에 출근했습니다!</div>
+{% endblock %} {% block game_content %}
 
 <div class="container">
-    <h2>오전 일정</h2>
-    <p>{{ game.current_month }}월 오전</p>
-    <p>총 자산: {{ game.current_money }}만원</p> 
-    <p>직업: {{ game.job }}</p>
-    {% if game.house.image %}
-        <img src="{% static game.house.image %}" alt="{{ game.house }}">
-    {% endif %}
-    <p>집: {{ game.house }}</p>
-
-    {% if game.job.work_image %}
-        <img src="{% static game.job.work_image %}" alt="{{ game.job }}">
-    {% endif %}
-    
-    <p>일하는 중!</p>
-    <form method="post">
-        {% csrf_token %}
-        <button type="submit">다음으로</button>
-    </form>
+  {% comment %}
+  <p>{{ game.current_month }}월 오전</p>
+  {% endcomment %} {% if game.job.work_image %}
+  <img src="{% static game.job.work_image %}" alt="{{ game.job }}" />
+  {% endif %} {% endblock %}{% block game_info2 %}
+  <div>일하는 중...</div>
+  <form method="post">
+    {% csrf_token %}
+    <button type="submit" class="next"><img src="{%static "img/game_next_btn.png" %}"></button>
+  </form>
 </div>
+{% endblock %}

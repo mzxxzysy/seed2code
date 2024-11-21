@@ -1,27 +1,21 @@
-{% load static %}
+{% extends 'gamebase.html' %} {% load static %} {% block title %}맛집 탐방{% endblock %} {% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/gamebase.css' %}" />
+<link rel="stylesheet" href="{% static 'css/morning.css' %}" />
+{% endblock %}{% block game_info %}
+<div>{{ restaurant.name }}으로 향했습니다.</div>
+<div>맛이 일품이네요!</div>
+{% endblock %} {% block game_content %}
 
-<div class="container mx-auto px-4 py-8">
-    <div class="max-w-2xl mx-auto bg-white rounded-lg shadow-md p-6">
-        <h1 class="text-2xl font-bold mb-4">{{ restaurant.name }}</h1>
-
-        <div class="mb-6">
-            <p class="text-lg mb-2">주문하신 메뉴의 가격은 {{ restaurant.price }}만원입니다.</p>
-            <p class="text-gray-600">총 자산: {{ game.current_money }}만원</p>
-        </div>
-
-        {% if restaurant %}
-        <div class="mb-6">
-            <p>{{ restaurant.menu }}</p>
-            <img src="{% static restaurant.menu_img %}"/>
-            <p>{{ restaurant.real_price }}</p>
-        </div>
-        {% endif %}
-
-        <form method="post">
-            {% csrf_token %}
-            <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded">
-                다음으로
-            </button>
-        </form>
-    </div>
+<div class="container">
+  {% comment %}
+  <p>{{ game.current_month }}월 오전</p>
+  {% endcomment %} {% if game.job.work_image %}
+  <img src="{% static game.job.work_image %}" alt="{{ game.job }}" />
+  {% endif %} {% endblock %}{% block game_info2 %}
+  <div>{{ restaurant.price }}만원을 지출하였습니다.</div>
+  <form method="post">
+    {% csrf_token %}
+    <button type="submit" class="next"><img src="{%static "img/game_next_btn.png" %}"></button>
+  </form>
 </div>
+{% endblock %}

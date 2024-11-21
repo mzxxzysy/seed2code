@@ -100,49 +100,49 @@
             "category": "mountain",
             "name": "주왕산",
             "description": "설명",
-            "image": "img/places/juwangsan.jpg"
+            "image": "img/juwangsan.jpg"
         },
         {
             "category": "mountain",
             "name": "철골 계곡",
             "description": "설명",
-            "image": "img/places/cheolgol.jpg"
+            "image": "img/cheolgol.jpg"
         },
         {
             "category": "mountain",
             "name": "백석탄 계곡",
             "description": "설명",
-            "image": "img/places/baekseoktan.jpg"
+            "image": "img/baekseoktan.jpg"
         },
         {
             "category": "nature",
             "name": "왕버들 고목",
             "description": "설명",
-            "image": "img/places/tree.jpg"
+            "image": "img/tree.jpg"
         },
         {
             "category": "nature",
             "name": "청송 얼음골",
             "description": "설명",
-            "image": "img/places/ice.jpg"
+            "image": "img/ice.jpg"
         },
         {
             "category": "nature",
             "name": "온천",
             "description": "설명",
-            "image": "img/places/spa.jpg"
+            "image": "img/placespa.jpg"
         },
         {
             "category": "museum",
             "name": "산소카페 청송정원",
             "description": "설명",
-            "image": "img/places/garden.jpg"
+            "image": "img/garden.jpg"
         },
         {
             "category": "museum",
             "name": "국립청송야송미술관",
             "description": "설명",
-            "image": "img/places/museum.jpg"
+            "image": "img/museum.jpg"
         }
     ],
     "cooking_ingredients": [

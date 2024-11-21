@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ region_name }} 상세 선택</title>
+</head>
+<body>
+    <h1>{{ region_name }} 정보</h1>
+    <p>{{ region_info }}</p>
+    <a href="{% url 'datas:tour_detail' region_name %}">관광 데이터 열람</a>
+    <a href="{% url 'datas:list' %}">뒤로 가기</a>
+</body>
+</html>

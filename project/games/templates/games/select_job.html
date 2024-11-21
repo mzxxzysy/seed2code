@@ -10,11 +10,8 @@
     <div class="job-list">
       {% for job in jobs %}
       <div class="job-card">
-        <input type="radio" name="{{ job.id }}" id="{{ job.id }}" value="{{ job.id }}" onclick="selectBox(event)" />
+        <input type="radio" name="job_id" id="{{ job.id }}" value="{{ job.id }}" onclick="selectBox(event)" />
         <label for="{{ job.id }}">{{ job.name }}</label>
-        {% if job.profile_image %}
-        <img src="{{ job.profile_image }}" alt="{{ job.name }}" />
-        {% endif %}
       </div>
       {%endfor%}
     </div>
@@ -27,6 +24,7 @@
     // 모든 label에서 'selected' 클래스 제거
     document.querySelectorAll("label").forEach((label) => {
       label.classList.remove("selected");
+      label.style.border = "2px solid #74cadd";
     });
 
     // 클릭된 input 요소의 id

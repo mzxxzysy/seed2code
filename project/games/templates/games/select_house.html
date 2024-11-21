@@ -1,15 +1,58 @@
+{% extends 'gamebase.html' %} {% load static %} {% block title %}직업 선택{% endblock %} {% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/gamebase.css' %}" />
+<link rel="stylesheet" href="{% static 'css/select_house.css' %}" />
+{% endblock %} {% block game_info %}
+<div>앞으로 살 집을 골라주세요.</div>
+<div>매달 월세가 나가니 신중히 선택해주세요.</div>
+{% endblock %} {% block game_content %}
 <div class="container">
-    <h2>주거지 선택</h2>
-    <form method="post">
-        {% csrf_token %}
+  <form method="post">
+    {% csrf_token %}
+
+    <div class="select-container">
+      <div class="row">
         {% for house in houses %}
-        <div class="house-card">
-            <h3>{{ house.name }}</h3>
-            <p>보증금: {{ house.deposit }}만원</p>
-            <p>월세: {{ house.monthly_rent }}만원</p>
-            <input type="radio" name="house_id" value="{{ house.id }}" required>
+        <div class="select-box">
+          <input type="radio" name="house_id" id="{{ house.id }}" value="{{ forloop.counter0 }}" onclick="selectBox(event)" required />
+          <label for="{{ house.id }}">
+            <img src="{%static house.image %}" class="house_img" />
+
+            <div class="house_info">
+              <div class="house_name">{{ house.name }}</div>
+              <div class="house_money">보증금 {{ house.deposit }}만원</div>
+              <div class="house_money">월세 {{ house.monthly_rent }}만원</div>
+            </div>
+          </label>
         </div>
-        {% endfor %}
-        <button type="submit">선택하기</button>
-    </form>
+        {% if forloop.counter|divisibleby:2 %}
+      </div>
+      <div class="row">{% endif %} {% endfor %}</div>
+    </div>
+    <button type="submit"><img src="{% static "img/blue_next.png" %}"></button>
+  </form>
 </div>
+{% endblock %} {% block game_info2 %}
+<div>주택 이름은 가명입니다.</div>
+<div>해당 지역의 부동산 월세를 참고하였습니다.</div>
+{% endblock %} {% comment %} {% block content %}
+<script>
+  function selectBox(event) {
+    // 모든 label에서 'selected' 클래스 제거
+    document.querySelectorAll("label").forEach((label) => {
+      label.classList.remove("selected");
+      label.style.border = "none";
+    });
+
+    // 클릭된 input 요소의 id
+    const inputId = event.target.id;
+
+    // input에 연결된 label 선택
+    const label = document.querySelector(`label[for='${inputId}']`);
+
+    // 클릭된 label에 'selected' 클래스 추가
+    if (label) {
+      label.style.border = "2px solid #74cadd";
+    }
+  }
+</script>
+{% endblock %} {% endcomment %}

@@ -69,7 +69,7 @@ def select_house(request, game_id):
 
 @login_required
 def game_start(request, month, time):
-    if month > 4:  # 5월이 되면 엔딩으로 리다이렉트
+    if month > 4:
         custom_user = request.user.customuser
         game = Game.objects.filter(user=custom_user, is_active=True).latest('created_at')
         return redirect('games:game_ending', game_id=game.id)
@@ -78,9 +78,7 @@ def game_start(request, month, time):
     custom_user = request.user.customuser
     game = Game.objects.filter(user=custom_user, is_active=True).latest('created_at')
     
-    # 이전 상태 저장
     prev_month = game.current_month
-    
     game.current_month = month
     game.is_morning = time
 
@@ -96,7 +94,7 @@ def game_start(request, month, time):
     
     game.save()
 
-    # Morning (time=1)
+    # 오전 일정
     if time == 1:
         if month == 3:
             if request.method == 'POST':
@@ -138,7 +136,7 @@ def game_start(request, month, time):
         
         return render(request, 'games/morning.html', context)
     
-    # Afternoon (time=2)
+    # 오후 일정
     elif time == 2:
         if month == 3:
             if request.method == 'POST':
@@ -148,7 +146,6 @@ def game_start(request, month, time):
         if request.method == 'POST':
             if month == 1:
                 restaurant_data = request.POST.get('restaurant')
-                # JSON 문자열을 딕셔너리로 변환했다면, 이름만 추출
                 if isinstance(restaurant_data, str):
                     try:
                         restaurant_dict = json.loads(restaurant_data)

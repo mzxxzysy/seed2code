@@ -50,8 +50,6 @@ def select_house(request, game_id):
     selection_data = load_selection()
     houses = selection_data.get('houses', [])
 
-    print(houses)
-
     if request.method == 'POST':
         house_id = int(request.POST.get('house_id'))
 
@@ -135,10 +133,10 @@ def game_start(request, month, time):
                     restaurant_name=restaurant_name)
                 
             elif month == 2:
-                category = request.POST.get('category')
-                places = [p for p in selection_data['places'] if p['category'] == category]
-                game.save()
-                return redirect('games:night_transition', month=month)
+                if request.method == 'POST':
+                    category = request.POST.get('category')
+                    if category:  # 선택된 카테고리 처리
+                        return redirect('games:place_detail', game_id=game.id, category=category)
                 
             elif month == 4:
                 selected_ingredients = request.POST.getlist('ingredients')
@@ -243,6 +241,21 @@ def restaurant_detail(request, game_id, restaurant_name):
     }
     
     return render(request, 'games/restaurant_detail.html', context)
+
+@login_required
+def place_detail(request, game_id, category):
+    selection_data = load_selection()
+    places = [p for p in selection_data['places'] if p['category'] == category]
+    
+    if not places:
+        return redirect('games:night_transition', month=2)
+
+    selected_place = random.choice(places)
+    
+    if request.method == 'POST':
+        return redirect('games:night_transition', month=2)
+    
+    return render(request, 'games/place_detail.html', {'place': selected_place, 'game_id': game_id})
 
 def get_cooking_result(selected_ingredients):
     if set(selected_ingredients) == {"떡국떡"} or set(selected_ingredients) >= {"떡국떡", "곶감", "미꾸라지"}:

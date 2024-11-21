@@ -1,0 +1,62 @@
+form {
+  width: 414px;
+  height: 334px;
+  background-image: url("../img/job_page.png");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+
+.job-list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* 두 개의 열 */
+  gap: 15px; /* 카드 간격 */
+  width: 60%;
+  position: relative;
+  left: 34%;
+  top: 100px;
+}
+
+/* 직업 카드 */
+.job-card {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* 숨겨진 라디오 버튼 */
+input[type="radio"] {
+  display: none;
+}
+
+/* 직업 이름 레이블 */
+label {
+  width: 100px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #fff;
+  border: 2px solid #74cadd;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 400;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  :hover {
+    cursor: pointer;
+  }
+}
+
+button {
+  border: none;
+  background-color: rgb(0, 0, 0, 0);
+  position: relative;
+  left: 48%;
+  top: 28%;
+
+  :hover {
+    cursor: pointer;
+  }
+}

@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>{{ place.name }}</h2>
+<img src="{{ place.image }}" alt="{{ place.name }}">
+<p>{{ place.description }}</p>
+
+<form method="post">
+    {% csrf_token %}
+    <button type="submit">다음</button>
+</form>
+{% endblock %}

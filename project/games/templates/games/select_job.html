@@ -1,14 +1,40 @@
-<div class="container">
-    <h2>직업 선택</h2>
-    <form method="post">
-        {% csrf_token %}
-        {% for job in jobs %}
-        <div class="job-card">
-            <h3>{{ job.name }}</h3>
-            
-            <input type="radio" name="job_id" value="{{ job.id }}" required>
-        </div>
-        {% endfor %}
-        <button type="submit">선택하기</button>
-    </form>
-</div>
+{% extends 'gamebase.html' %} {% load static %} {% block title %}직업 선택{% endblock %} {% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/gamebase.css' %}" />
+<link rel="stylesheet" href="{% static 'css/select_job.css' %}" />
+{% endblock %} {% block game_content %}
+
+<form method="post">
+  {% csrf_token %}
+  <div class="job-container">
+    <div class="job-list">
+      {% for job in jobs %}
+      <div class="job-card">
+        <input type="radio" name="job_id" id="{{ job.id }}" value="{{ job.id }}" onclick="selectBox(event)" />
+        <label for="{{ job.id }}">{{ job.name }}</label>
+      </div>
+      {%endfor%}
+    </div>
+  </div>
+  <button type="submit" class="select-btn"><img src="{%static "img/game_next.png"%}" ></button>
+</form>
+
+<script>
+  function selectBox(event) {
+    document.querySelectorAll("label").forEach((label) => {
+      label.classList.remove("selected");
+      label.style.border = "2px solid #74cadd";
+    });
+
+    // 클릭된 input 요소의 id
+    const inputId = event.target.id;
+
+    // input에 연결된 label 선택
+    const label = document.querySelector(`label[for='${inputId}']`);
+
+    if (label) {
+      label.style.border = "2px solid #c06a89";
+    }
+  }
+</script>
+
+{% endblock %}

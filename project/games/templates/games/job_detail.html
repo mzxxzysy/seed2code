@@ -1,13 +1,16 @@
-{% load static %}
+{% extends 'gamebase.html' %} {% load static %} {% block title %}직업 선택{% endblock %} {% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/gamebase.css' %}" />
+<link rel="stylesheet" href="{% static 'css/job_detail.css' %}" />
+{% endblock %} {% block game_info %}
 
-<h1>{{ job.name }}</h1>
-<p>{{ job.description }}</p>
-<p>월급: {{ job.salary }}</p>
-
-{% if job.profile_image %}
-    <img src="{% static job.profile_image %}" alt="{{ job.name }}">
+<div>당신은 {{ job.name }}입니다!</div>
+<div>매월 {{ job.salary }}만원 급여를 지급합니다.</div>
+{% endblock %} {% block game_content %} {% if job.profile_image %}
+<img src="{% static job.profile_image %}" alt="{{ job.name }}" />
 {% endif %}
-<form method="POST">
-    {% csrf_token %}
-    <button type="submit">다음으로</button>
+<form method="post">
+  {% csrf_token %} {% endblock %} {% block game_info2 %}
+  <div>{{ job.description }}</div>
+  <button type="submit" class="next"><img src="{%static "img/game_next_btn.png" %}"></button>
+  {% endblock %}
 </form>

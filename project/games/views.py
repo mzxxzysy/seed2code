@@ -50,8 +50,6 @@ def select_house(request, game_id):
     selection_data = load_selection()
     houses = selection_data.get('houses', [])
 
-    print(houses)
-
     if request.method == 'POST':
         house_id = int(request.POST.get('house_id'))
 

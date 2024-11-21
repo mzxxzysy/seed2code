@@ -1,0 +1,13 @@
+{% extends 'base.html' %} {% load static %} {% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/gamebase.css' %}" />
+{% endblock %} {% block content %}
+
+<header>
+  <img src="{%static "img/day.png" %}">
+  <div>첫 번째 달</div>
+</header>
+
+<div class="game_info">{% block game_info %} {% endblock %}</div>
+<div class="game_contents">{% block game_content %} {% endblock %}</div>
+<div class="game_info2">{% block game_info2 %} {% endblock %}</div>
+{% endblock %}

@@ -28,6 +28,8 @@ body {
 
   width: 414px;
   height: 736px;
+
+  overflow: auto;
 }
 
 .give_bg {

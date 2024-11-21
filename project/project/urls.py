@@ -24,4 +24,5 @@ urlpatterns = [
     path('regions/', include('regions.urls')),
     path('games/', include('games.urls')),
     path('datas/', include('datas.urls')),
+    path('records/', include('records.urls')),
 ]

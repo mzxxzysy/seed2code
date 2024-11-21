@@ -12,7 +12,7 @@
   </div>
 </header>
 
-<div class="accounts_btn">3번째 삶은 <span>&nbsp;어디서&nbsp; </span> 시작할까요?</div>
+<div class="accounts_btn">{{ next_play }}번째 삶은 <span>&nbsp;어디서&nbsp; </span> 시작할까요?</div>
 <div class="main_main">
   <a href=""><img src="{% static "img/select_region.png" %}"></a>
   <a href="{% url 'regions:test' question_number=1 %}"><img src="{% static "img/go_test.png" %}"></a>

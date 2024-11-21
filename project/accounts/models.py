@@ -7,6 +7,6 @@ class CustomUser(models.Model):
     play_count = models.IntegerField(default=0)
     last_region = models.CharField(max_length=100, null=True, blank=True)
     profile_image = models.CharField(max_length=100, default='img/default_profile.png')
-
+    
     def __str__(self):
         return f"{self.user.username}"

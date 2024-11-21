@@ -1,8 +1,11 @@
+{% load static %}
+
 <div class="container">
     <h1>병원 방문</h1>
     <div>
         <h2>{{ hospital.name }}</h2>
-        <p>병원 비용: {{ hospital.price }}원</p>
+        <img src="{% static 'img/hospital.png' %}" alt="Hospital" />
+        <p>병원 비용: {{ hospital.price }}만원</p>
         <p>{{ hospital.description }}</p>
     </div>
     <form method="post">

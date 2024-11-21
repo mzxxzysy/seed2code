@@ -1,6 +1,12 @@
+{% load static %}
+
 <h1>{{ job.name }}</h1>
 <p>{{ job.description }}</p>
 <p>월급: {{ job.salary }}</p>
+
+{% if job.profile_image %}
+    <img src="{% static job.profile_image %}" alt="{{ job.name }}">
+{% endif %}
 <form method="POST">
     {% csrf_token %}
     <button type="submit">다음으로</button>

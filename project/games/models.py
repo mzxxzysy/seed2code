@@ -14,6 +14,7 @@ class House(models.Model):
     name = models.CharField(max_length=100)
     deposit = models.IntegerField()
     monthly_rent = models.IntegerField()
+    image = models.CharField(max_length=100, null=True, blank=True)
 
     def __str__(self):
         return self.name

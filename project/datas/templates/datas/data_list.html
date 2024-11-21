@@ -4,13 +4,16 @@
 <ul>
   {% for region in regions %}
   <li>
-    <div class="region_data">
-      <div class="region_name">{{ region }}</div>
-      <a href="{% url 'datas:region_detail' region %}">열람</a>
+    <div class="po">
+      <div class="region_data">
+        <div>
+          <div class="region_name">{{ region }}</div>
+          <a href="{% url 'datas:region_detail' region %}">열람</a>
+        </div>
+      </div>
+      <hr />
+      <img src="{% static "img/chungsong.png" %}" class="map" >
     </div>
-
-    <hr />
-    <img src="{% static "img/chungsong.png" %}" class="map" >
   </li>
   {% endfor %}
 </ul>

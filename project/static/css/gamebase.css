@@ -22,6 +22,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin-top: 20px;
 }
 
 .content {
@@ -31,7 +32,7 @@
 
 .game_contents {
   width: 414px;
-  height: 39vh;
+  height: 35vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -42,6 +43,28 @@
   background-color: rgb(0, 0, 0, 0);
   border: none;
   position: relative;
-  left: 40%;
-  top: 13%;
+  left: 38%;
+  top: 16px;
+}
+
+.user_datas {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  position: relative;
+  top: 20px;
+}
+
+.user_data img {
+  width: 25px;
+  height: 25px;
+}
+
+.user_data {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+
+  gap: 10px;
 }

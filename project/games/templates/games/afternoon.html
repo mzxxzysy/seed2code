@@ -1,44 +1,158 @@
-<div class="container">
-    <h2>오후 일정</h2>
-    <p>{{ game.current_month }}월 오후</p>
-    <p>총 자산: {{ game.current_money }}만원</p> 
-    <p>직업: {{ game.job }}</p>
-    <p>집: {{ game.house }}</p>
-    
-    {% if month == 1 %}
-        <h3>맛집 탐방</h3>
-        <form method="post">
-            {% csrf_token %}
+{% extends 'gamebase.html' %} {% load static %} {% block title %}오후 스케줄{% endblock %} {% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/gamebase.css' %}" />
+<link rel="stylesheet" href="{% static 'css/afternoon.css' %}" />
+{% endblock %}
+  {% comment %} <p>{{ game.current_month }}월 오후</p> {% endcomment %}
+
+  {% block game_info %}
+  {% if month == 1 %}
+  <div>퇴근 시간입니다.</div>
+  <div>눈 앞에 청송군에서 소문난 맛집들이 있네요!</div>
+  {% elif month == 2 %}
+  <div>퇴근 시간입니다.</div>
+  <div>오늘은 왠지 놀고 싶은 날입니다.</div>
+  {% elif month == 4 %}
+  <div>퇴근 시간입니다.</div>
+  <div>오늘은 집밥을 해먹읍시다.</div>
+  {% endif%}
+  {%endblock%}
+
+  {% block game_content %}
+  <div class="month-{{ month }}">
+  {% if month == 1 %}
+
+  <form method="post">
+    {% csrf_token %} 
+
+    <div class="select-container">
+        <div class="row">
             {% for restaurant in restaurants %}
-                <div class="restaurant-option">
-                    <input type="radio" name="restaurant" value="{{ restaurant.name }}" required>
-                    <label>{{ restaurant.name }} ({{ restaurant.price }}만원)</label>
-                </div>
-            {% endfor %}
-            <button type="submit">선택하기</button>
-        </form>
-    {% elif month == 2 %}
-        <h3>여가 활동</h3>
-        <form method="post">
-            {% csrf_token %}
-            <div class="place-categories">
-                <input type="radio" name="category" value="mountain" required> 산/계곡
-                <input type="radio" name="category" value="nature"> 자연 명소
-                <input type="radio" name="category" value="museum"> 박물관/공원
+            <div class="select-box">
+              <input type="radio" name="restaurant" id="{{ restaurant.name }}" value="{{ restaurant.name }}" onclick='selectBox(event)' />
+              <label for="{{ restaurant.name }}" class="label_1">
+                <div>{{ restaurant.name }}</div>
+                <div>{{ restaurant.price }}만원</div>
+                <div>(실제 가격: 20000)</div>
+              </label>
             </div>
-            <button type="submit">선택하기</button>
-        </form>
-    {% elif month == 4 %}
-        <h3>요리 재료 선택</h3>
-        <form method="post">
-            {% csrf_token %}
-            {% for ingredient in ingredients %}
-                <div class="ingredient-option">
-                    <input type="checkbox" name="ingredients" value="{{ ingredient.name }}">
-                    <label>{{ ingredient.name }} ({{ ingredient.price }}원)</label>
-                </div>
-            {% endfor %}
-            <button type="submit">선택하기</button>
-        </form>
-    {% endif %}
+            {% if forloop.counter|divisibleby:2 %}
+              </div><div class="row">
+            {% endif %}
+          {% endfor %}
+        </div>
+    </div>
+      
+
+      <button type="submit" class="next"><img src="{% static "img/blue_next.png" %}"></button>
+
+      <script>
+        function selectBox(event) {
+          // 모든 label에서 'selected' 클래스 제거
+          document.querySelectorAll("label").forEach((label) => {
+            label.classList.remove("selected");
+            label.style.borderColor = "#c06a89";
+          });
+      
+          const inputId = event.target.id;
+      
+          const label = document.querySelector(`label[for='${inputId}']`);
+      
+          if (label) {
+            label.style.borderColor = "#74cadd";
+          }
+        }
+      </script>
+  </form>
+
+  {% elif month == 2 %}
+  <form method="post">
+    {% csrf_token %}
+    <div class="mountain">
+      <input type="radio" name="category" value="mountain" id="mountain" onclick='selectBox(event)' required />
+      <label for="mountain" class="label_2">
+        <img src="{%static "img/location_red.png" %}">
+        <div>산 혹은 계곡</div>
+      </label>
+    </div>
+    <div class="nature">
+      <input type="radio" name="category" value="nature" id="nature" onclick='selectBox(event)' required />
+      <label for="nature" class="label_2">
+        <img src="{%static "img/location_red.png" %}">
+        <div>자연 명소</div>
+      </label>
+    </div>
+    <div class="museum">
+      <input type="radio" name="category" value="museum" id="museum" onclick='selectBox(event)' required />
+      <label for="museum" class="label_2">
+        <img src="{%static "img/location_red.png" %}">
+        <div>박물관 혹은 공원</div>
+      </label>
+    </div>
+    <button type="submit" class="next" style="top:170px"><img src="{% static "img/blue_next.png" %}"></button>
+  </form>
+
+  <script>
+    function selectBox(event) {
+      // 모든 label에서 'selected' 클래스 제거
+      document.querySelectorAll("label").forEach((label) => {
+        label.classList.remove("selected");
+        const img = label.querySelector("img");
+        const label_div = label.querySelector("div");
+        img.src = "{% static "img/location_red.png" %}"
+        label_div.style.backgroundColor = "#c06a89";
+      });
+  
+      const inputId = event.target.id;
+  
+      const label = document.querySelector(`label[for='${inputId}']`);
+  
+      if (label) {
+        const label_div = label.querySelector("div");
+        label_div.style.backgroundColor = "#74cadd";
+        const img = label.querySelector("img");
+        img.src = "{% static "img/location_blue.png" %}"
+      }
+    }
+  </script>
+
+  {% elif month == 4 %}
+  <form method="post">
+    {% csrf_token %}
+    <div class="select-container4">
+      <div class="row4">
+          {% for ingredient in ingredients %} 
+          <div class="select-box4">
+            <input type="checkbox" name="ingredients" value="{{ ingredient.name }}" id="ingredient-{{ forloop.counter }}"/>
+            <label for="ingredient-{{ forloop.counter }}" >
+              <div>{{ ingredient.name }}</div> 
+              <div>{{ ingredient.price }}만원</div>
+            </label>
+          </div>
+          {% if forloop.counter|divisibleby:2 %}
+            </div><div class="row">
+          {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+    <button type="submit" class="buy_food"><img src="{% static "img/buy_food.png" %}"></button>
+  </form>
+  {% endif %}
+    </div>  
+  {% endblock %}
+  
+  {%block game_info2%}
+  {% if month == 1 %}
+  <div>저녁은 무엇을 먹을까요?</div>
+  {% elif month == 2 %}
+  <div>어디로 놀러갈까요?</div>
+  {% elif month == 4 %}
+  <div>어떤 재료를 선택할까요?</div>
+  <div>(실제 청송군의 물가를 참고하였습니다.)</div>
+  {% endif %}
+  
+  {% comment %} <form method="post">
+    {% csrf_token %}
+    <button type="submit" class="next"><img src="{%static "img/game_next_btn.png" %}"></button>
+  </form> {% endcomment %}
 </div>
+  {%endblock%}

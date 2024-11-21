@@ -1,0 +1,174 @@
+.nav_bar {
+  width: 100%;
+}
+
+.game_contents {
+  height: 32vh;
+}
+
+.next {
+  position: relative;
+  left: 150px;
+  top: 10px;
+}
+
+.month-1 {
+  width: 100%;
+  height: 100%;
+  background-image: url("../img/restaurant_menu.png");
+  background-size: 312px 269px;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.select-container {
+  display: flex;
+  flex-direction: column; /* 상하 정렬 */
+  align-items: center; /* 중앙 정렬 */
+  gap: 10px; /* 위아래 간격 */
+
+  margin-top: 50px;
+}
+
+.row {
+  display: flex;
+  flex-direction: row; /* 좌우 정렬 */
+  gap: 15px; /* 좌우 간격 */
+}
+
+input[type="radio"] {
+  display: none;
+}
+
+.label_1 {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  width: 135px;
+  height: 100px;
+
+  border: 2px solid #c06a89;
+  border-radius: 5px;
+
+  :hover {
+    cursor: pointer;
+  }
+}
+
+button {
+  border: none;
+  background-color: rgb(0, 0, 0, 0);
+
+  :hover {
+    cursor: pointer;
+  }
+}
+
+button img {
+  position: relative;
+  right: 15%;
+  bottom: 16px;
+}
+
+.month-2 {
+  width: 100%;
+  height: 100%;
+  background-image: url("../img/region_map.png");
+  background-size: 213px 178px;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.label_2 {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  z-index: 10;
+
+  :hover {
+    cursor: pointer;
+  }
+}
+
+.label_2 div {
+  padding: 6px 8px;
+  background-color: #c06a89;
+  border-radius: 8px;
+  color: white;
+  font-weight: 100;
+}
+
+.mountain {
+  width: 140px;
+  position: relative;
+  left: 220px;
+  top: 120px;
+}
+
+.nature {
+  width: 120px;
+  position: relative;
+  left: 120px;
+  bottom: 20px;
+}
+
+.museum {
+  width: 170px;
+  position: relative;
+  left: 60px;
+  top: 130px;
+}
+
+.month-4 {
+  width: 100%;
+  height: 100%;
+  background-image: url("../img/food_menu.png");
+  background-size: 312px 269px;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.select-container4 {
+  display: flex;
+  flex-direction: column; /* 상하 정렬 */
+  align-items: center; /* 중앙 정렬 */
+  margin-top: 50px;
+}
+
+.row4 {
+  display: flex;
+  flex-direction: row; /* 좌우 정렬 */
+  gap: 15px; /* 좌우 간격 */
+}
+
+.select-box4 {
+  width: 123px;
+  height: 60px;
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  align-items: center;
+  gap: 20px;
+}
+
+.buy_food {
+  position: relative;
+  left: 300px;
+  bottom: 60px;
+}
+
+.month-4 input {
+  width: 22px;
+  height: 22px;
+  appearance: none;
+  border: 1px solid black;
+  cursor: pointer;
+}
+
+/* 체크 상태에 따른 색상 변경 */
+input[type="checkbox"]:checked {
+  background-color: #c06a89;
+}

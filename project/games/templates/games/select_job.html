@@ -5,9 +5,7 @@
         {% for job in jobs %}
         <div class="job-card">
             <h3>{{ job.name }}</h3>
-            {% if job.profile_image %}
-                <img src="{{ job.profile_image }}" alt="{{ job.name }}">
-            {% endif %}
+            
             <input type="radio" name="job_id" value="{{ job.id }}" required>
         </div>
         {% endfor %}

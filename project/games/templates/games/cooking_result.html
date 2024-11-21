@@ -1,5 +1,4 @@
 
-
 {% extends 'gamebase.html' %} {% load static %} {% block title %}맛집 탐방{% endblock %} {% block extra_css %}
 <link rel="stylesheet" href="{% static 'css/gamebase.css' %}" />
 <link rel="stylesheet" href="{% static 'css/night.css' %}" />
@@ -7,9 +6,9 @@
 <div>사온 재료들로 음식을 만들었습니다!</div>
 {% endblock %} {% block game_content %}
 
-<img src="">
+<img src="{% static result.cook_img %}"/>
  {% endblock %}{% block game_info2 %}
-  <div>{{ result }}</div>
+  <div>사온 재료들로 {{ result.result }} 만들었습니다!</div>
   <form method="post" action="{% if game.hospital_visited == 4 %}{% url 'games:hospital_visit' game_id=game.id %}{% else %}{% url 'games:game_ending' game_id=game.id %}{% endif %}">
         {% csrf_token %}
         <button type="submit" class="next"><img src="{%static "img/game_next_btn.png" %}"></button>

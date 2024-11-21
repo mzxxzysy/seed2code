@@ -1,19 +1,26 @@
 {% extends 'base.html' %} {% load static %} {% block title %}{{ region_name }}{% endblock %} {% block extra_css %}
 <link rel="stylesheet" href="{% static 'css/region_detail.css' %}" />
 {% endblock %} {% block content %} <img src="{% static "img/open_data.png" %}" class="data_title">
-<div class="location">
-  <div class="region_name">{{ region_name }}</div>
-  <a href="{% url 'datas:list' %}">뒤로 가기</a>
-</div>
-<div>본 페이지는 산소카페 청송군을 참고하였습니다.</div>
-{% comment %}
-<p>{{ region_info }}</p>
-{% endcomment %}
 
-<div>
-  <div>청송군 홈페이지</div>
-  <a href="{% url 'datas:tour_detail' region_name %}">관광 데이터 열람</a>
-</div>
+<div class="page_border">
+  <div class="location">
+    <div class="region_name">{{ region_name }}</div>
+    <a href="{% url 'datas:list' %}">뒤로 가기</a>
+  </div>
 
-<img src="{% static "img/region_detail1.png" %}"> <img src="{% static "img/region_detail2.png" %}"> <img src="{% static "img/sightseeing_data.png" %}"> <img
-src="{% static "img/work_data.png" %}"> {% endblock %}
+  <div class="page_info">본 페이지는 산소카페 청송군을 참고하였습니다.</div>
+  {% comment %}
+  <p>{{ region_info }}</p>
+  {% endcomment %}
+  <div class="homepage_border">
+    <div class="homepage">
+      <div>청송군 홈페이지</div>
+      <a href="{% url 'datas:tour_detail' region_name %}">바로가기</a>
+    </div>
+  </div>
+
+  <img src="{% static "img/region_detail1.png" %}"> <img src="{% static "img/region_detail2.png" %}">
+
+  <div></div>
+</div>
+{% endblock %}

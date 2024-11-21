@@ -3,10 +3,11 @@
 <div class="container">
     <h1>병원 방문</h1>
     <div>
-        <h2>{{ hospital.name }}</h2>
-        <img src="{% static 'img/hospital.png' %}" alt="Hospital" />
-        <p>병원 비용: {{ hospital.price }}만원</p>
+        <p>{{ hospital.name }}에 왔습니다.</p>
         <p>{{ hospital.description }}</p>
+        <img src="{% static 'img/hospital.png' %}" alt="Hospital" />
+        <p>{{ hospital.disease }}</p>
+        <p>총 {{ hospital.show_price }}원이 지출되었습니다.</p>
     </div>
     <form method="post">
         {% csrf_token %}

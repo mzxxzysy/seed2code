@@ -13,7 +13,7 @@
         <div class="row">
         {% for house in houses %}
         <div class="select-box">
-            <input type="radio" name="house_id" id="{{ house.id }}" value="{{ forloop.counter0 }}" onclick="selectBox(event)" required />
+            <input type="radio" name="house_id" id="{{ house.id }}" value="{{ house.id }}" onclick="selectBox(event)" required />
             <label for="{{ house.id }}">
             <img src="{% static house.image %}" class="house_img" />
 

@@ -88,7 +88,7 @@ def game_start(request, month, time):
     if time == 1 and prev_month < month:
         game.current_money += game.job.salary
         game.current_money -= game.house.monthly_rent
-        game.current_money -= (game.house.deposit)/4
+        game.current_money -= (game.house.deposit)/12
         game.current_money = (int)(game.current_money)
         
         if game.current_money < 0:
@@ -259,15 +259,35 @@ def place_detail(request, game_id, category):
 
 def get_cooking_result(selected_ingredients):
     if set(selected_ingredients) == {"떡국떡"} or set(selected_ingredients) >= {"떡국떡", "곶감", "미꾸라지"}:
-        return "떡국떡을 끓인 육수에 곶감을 넣어 단맛을 더하고 미꾸라지를 추가해서 깊은 맛을 냈습니다. 색다른 맛이네요!"
+        result = "떡국을"
+        description = "떡국떡을 끓인 육수에 곶감을 넣어 단맛을 더하고 미꾸라지를 추가해서 깊은 맛을 냈습니다. 색다른 맛이네요!"
+        cook_img = "img/tteok.png"
+        context = { "result": result, "description": description, "cook_img": cook_img }
+        return context
     elif set(selected_ingredients) >= {"곶감", "청송사과", "귤"}:
-        return "곶감과 청송사과, 귤을 함께 잘라서 상큼한 샐러드를 만들었습니다. 신선하고 맛있네요!"
+        result = "샐러드를"
+        description = "곶감과 청송사과, 귤을 함께 잘라서 상큼한 샐러드를 만들었습니다. 신선하고 맛있네요!"
+        cook_img = "img/salad.png"
+        context = { "result": result, "description": description, "cook_img": cook_img }
+        return context
     elif set(selected_ingredients) >= {"청송사과", "오징어"} or set(selected_ingredients) == {"오징어"}:
-        return "오징어 볶음 안에 청송사과를 넣어서 함께 볶았습니다. 달콤하고 짭조름한 맛이네요!"
+        result = "오징어 볶음을"
+        description = "오징어 볶음 안에 청송사과를 넣어서 함께 볶았습니다. 달콤하고 짭조름한 맛이네요!"
+        cook_img = "img/squid.png"
+        context = { "result": result, "description": description, "cook_img": cook_img }
+        return context
     elif set(selected_ingredients) >= {"미꾸라지", "귤"}:
-        return "미꾸라지를 깨끗하게 손질하고 귤즙과 함께 찜통에 쪄냈습니다. 상큼하고도 건강한 음식이네요!"
+        result = "미꾸라지 찜을"
+        description = "미꾸라지를 깨끗하게 손질하고 귤즙과 함께 찜통에 쪄냈습니다. 상큼하고도 건강한 음식이네요!"
+        cook_img = "img/zzim.png"
+        context = { "result": result, "description": description, "cook_img": cook_img }
+        return context
     else:
-        return "사온 재료랑 집에 있는 음식까지 전부 섞어서 먹었습니다. 정말 맛있네요!"
+        result = "전부 섞어 먹는 음식을"
+        description = "사온 재료랑 집에 있는 음식까지 전부 섞어서 먹었습니다. 정말 맛있네요!"
+        cook_img = "img/every.png"
+        context = { "result": result, "description": description, "cook_img": cook_img }
+        return context
 
 @login_required
 def cooking_result(request, game_id):

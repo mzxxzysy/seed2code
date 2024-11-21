@@ -1,3 +1,5 @@
+{% load static %}
+
 <div class="container">
     <h2>주거지 선택</h2>
     <form method="post">
@@ -5,6 +7,9 @@
         {% for house in houses %}
         <div class="house-card">
             <h3>{{ house.name }}</h3>
+            {% if house.image %}
+                <img src="{% static house.image %}" alt="{{ house.name }}">
+            {% endif %}
             <p>보증금: {{ house.deposit }}만원</p>
             <p>월세: {{ house.monthly_rent }}만원</p>
             <input type="radio" name="house_id" value="{{ house.id }}" required>

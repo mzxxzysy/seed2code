@@ -82,6 +82,9 @@ def game_start(request, month, time):
     game.current_month = month
     game.is_morning = time
 
+    if game.hospital_visited == month and time == 2:
+        return redirect('games:hospital_event', game_id=game.id)
+
     if time == 1 and prev_month < month:
         game.current_money += game.job.salary
         game.current_money -= game.house.monthly_rent
@@ -210,6 +213,16 @@ def night_transition(request, month):
         'game': game,
         'month': month
     })
+
+@login_required
+def hospital_event(request, game_id):
+    selection_data = load_selection()
+    game = get_object_or_404(Game, id=game_id)
+
+    if request.method == 'POST':
+        return redirect('games:hospital_visit', game_id=game.id)
+
+    return render(request, 'games/hospital_event.html')
 
 @login_required
 def hospital_visit(request, game_id):

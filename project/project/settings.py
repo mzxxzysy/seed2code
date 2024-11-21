@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'regions',
     'games',
     'datas',
+    'records',
 ]
 
 MIDDLEWARE = [

@@ -17,4 +17,6 @@ def main(request):
     else:
         custom_user = None
 
-    return render(request, 'main/main.html', {'user': user, 'custom_user': custom_user})
+    next_play = custom_user.play_count + 1
+
+    return render(request, 'main/main.html', {'user': user, 'custom_user': custom_user, 'next_play': next_play })

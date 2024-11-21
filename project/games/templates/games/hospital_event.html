@@ -1,0 +1,10 @@
+{% load static %}
+<body>
+    <p>아픕니다.</p>
+    <img src="{% static 'img/sick.png' %}" alt="Hospital Event" />
+
+    <form method="POST">
+        {% csrf_token %}
+        <button type="submit">다음으로</button>
+    </form>
+</body>

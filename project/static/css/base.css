@@ -23,7 +23,6 @@ body {
 
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
 
   width: 414px;
@@ -105,4 +104,53 @@ body {
 .nav_icon {
   width: 80px;
   height: 80px;
+}
+
+@media all and (max-width: 1366px) {
+  html {
+    width: 100%;
+    height: 100%;
+  }
+
+  body {
+    width: 100%;
+    height: 100%;
+  }
+
+  .content {
+    width: 100%;
+    height: 100%;
+  }
+
+  .give_bg {
+    height: 100%;
+    width: 100%;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+  }
+
+  .nav_icon {
+    width: 18vw;
+    height: 18vw;
+  }
+
+  .nav_bar {
+    width: 100%;
+    background-size: 100%;
+    position: fixed;
+    bottom: 0;
+  }
+
+  .accounts_btn {
+    width: 100%;
+    height: 35vw;
+    background-image: url("../img/button.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+
+    :hover {
+      cursor: pointer;
+    }
+  }
 }

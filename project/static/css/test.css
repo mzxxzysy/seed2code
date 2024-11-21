@@ -1,8 +1,11 @@
 body {
   background-image: url("../img/region_bg.png");
   background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 100% 100%;
   display: flex;
   justify-content: center;
+  align-items: center;
 
   width: 414px;
   height: 736px;
@@ -101,4 +104,78 @@ label.selected {
 button {
   border: none;
   background-color: rgb(255, 255, 255, 0);
+}
+
+@media all and (min-width: 1366px) {
+  html {
+    width: 414px;
+    height: 736px;
+  }
+
+  body {
+    width: 414px;
+    height: 736px;
+  }
+}
+
+@media all and (max-width: 1366px) {
+  html {
+    width: 100%;
+    height: 100%;
+  }
+  body {
+    width: 100%;
+    height: 100%;
+  }
+  /* } */
+
+  /* @media only screen and (min-width: 768px) and (max-width: 1366px) { */
+
+  .question {
+    font-size: 40px;
+  }
+
+  .next {
+    width: 20em;
+    height: 10em;
+  }
+
+  .question-box {
+    width: 70vw;
+    height: 15vh;
+    margin-top: 20%;
+  }
+
+  .question {
+    font-size: 40px;
+  }
+
+  .img-box img {
+    width: 50vw;
+    height: 45vw;
+    margin: 40px 0;
+  }
+
+  .select-box {
+    width: 25vw;
+    height: 5vh;
+    border-radius: 10px;
+  }
+
+  label {
+    width: 23vw;
+    height: 4vh;
+    box-shadow: 0 0 0 13px #c06a89;
+  }
+
+  .select-container {
+    gap: 3vh;
+  }
+
+  .row {
+    gap: 4vw;
+  }
+}
+
+@media only screen and (max-width: 768px) {
 }

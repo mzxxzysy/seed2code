@@ -32,3 +32,71 @@ header img,
 .message .error {
   color: #ff0000;
 }
+
+@media all and (max-width: 768px) {
+  header img {
+    width: 50vw;
+    height: 38vw;
+  }
+  .input input {
+    width: 60vw;
+    height: 2.4vh;
+    padding: 1vh 2vh;
+    margin: 0 0 25px;
+
+    border: 1px solid #438740;
+    border-radius: 5px;
+    outline: none;
+
+    font-size: 2vw;
+    margin: 1vh 0 1.5vh;
+  }
+
+  .accounts_text {
+    font-size: 5vw;
+  }
+
+  .accounts_btn {
+    width: 100%;
+    height: 11vh;
+    background-size: 100%;
+  }
+
+  .go_signup {
+    font-size: 3vw;
+  }
+}
+@media only screen and (min-width: 768px) and (max-width: 1366px) {
+  header img {
+    width: 40vw;
+    height: 28vw;
+  }
+  .input input {
+    width: 55vw;
+    height: 4vh;
+    padding: 1vh 2vh;
+    margin: 0 0 25px;
+
+    border: 1px solid #438740;
+    border-radius: 5px;
+    outline: none;
+
+    font-size: 2vw;
+    margin: 1vh 0 1.5vh;
+  }
+
+  .accounts_text {
+    font-size: 5vw;
+  }
+
+  .accounts_btn {
+    width: 100%;
+    height: 16vh;
+    background-size: contain;
+    background-position: center;
+  }
+
+  .go_signup {
+    font-size: 3vw;
+  }
+}

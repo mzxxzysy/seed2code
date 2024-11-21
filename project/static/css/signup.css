@@ -1,6 +1,11 @@
 html {
   background-image: url("../img/signup_bg.png");
+  background-size: 100%;
   background-repeat: no-repeat;
+}
+
+.content {
+  margin-top: 30px;
 }
 
 .signup {
@@ -23,4 +28,81 @@ html {
   margin-left: 5px;
   color: #438740;
   text-decoration: none;
+}
+@media all and (max-width: 768px) {
+  .content {
+    margin-top: 3vh;
+  }
+  .input input {
+    width: 60vw;
+    height: 2.4vh;
+    padding: 1vh 2vh;
+    margin: 0 0 25px;
+
+    border: 1px solid #438740;
+    border-radius: 5px;
+    outline: none;
+
+    font-size: 2vw;
+    margin: 1vh 0 1.5vh;
+  }
+
+  .ht2 {
+    font-size: 3vw;
+  }
+
+  .accounts_text {
+    font-size: 5vw;
+  }
+
+  .accounts_btn {
+    width: 100%;
+    height: 11vh;
+    background-size: 100%;
+  }
+
+  .go_login {
+    font-size: 3vw;
+  }
+}
+@media only screen and (min-width: 768px) and (max-width: 1366px) {
+  html {
+    background-size: contain;
+    background-position: center;
+  }
+  .content {
+    margin-top: 15vh;
+  }
+  .input input {
+    width: 55vw;
+    height: 4vh;
+    padding: 1vh 2vh;
+    margin: 0 0 25px;
+
+    border: 1px solid #438740;
+    border-radius: 5px;
+    outline: none;
+
+    font-size: 2vw;
+    margin: 1vh 0 1.5vh;
+  }
+
+  .ht2 {
+    font-size: 3vw;
+  }
+
+  .accounts_text {
+    font-size: 5vw;
+  }
+
+  .accounts_btn {
+    width: 100%;
+    height: 15vh;
+    background-size: contain;
+    background-position: center;
+  }
+
+  .go_login {
+    font-size: 2vw;
+  }
 }

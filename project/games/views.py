@@ -103,41 +103,11 @@ def game_start(request, month, time):
             if request.method == 'POST':
                 return redirect('games:game_start', month=month, time=2)
             return render(request, 'games/festival.html', {'game': game})
-            
-        morning_dialogues = {
-            1: [
-                "씨 오늘도 파이팅!",
-                "감사합니다.",
-                "요새 주산지 왕버들 복원사업 추진한다 카던데 들었어요?",
-                "들었죠. 왕버들 이식한다고 저수지까지 방류한대요.",
-                "잘 됐으면 좋겠네요. 나중에 놀러가야겠다."
-            ],
-            2: [
-                "씨 오늘 비 온다 카던데. 우산 챙겼나?",
-                "아유 그럼요.",
-                "내일 청송군 풋살연맹 취임식 있대요.",
-                "대회도 한다던데. 가시나요?",
-                "아, 당연히 가야죠! 창립기념 대회라던데."
-            ],
-            4: [
-                "씨 주말 잘 보냈어?",
-                "네! 내일도 주말이었으면 좋겠네요.",
-                "다음주 화요일에 흰지팡이의 날인 거 아시죠?",
-                "네, 청송문화예술회관 대공연장에서 만나겠네요.",
-                "시각장애인 화합한마당이라니 기대되네요."
-            ]
-        }
-        
-        context = {
-            'game': game,
-            'dialogues': morning_dialogues.get(month, []),
-            'user_nickname': custom_user.nickname
-        }
         
         if request.method == 'POST':
             return redirect('games:game_start', month=month, time=2)
         
-        return render(request, 'games/morning.html', context)
+        return render(request, 'games/morning.html', { 'game': game })
     
     # 오후 일정
     elif time == 2:

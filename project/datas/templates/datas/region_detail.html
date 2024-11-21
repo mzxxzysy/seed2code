@@ -15,12 +15,21 @@
   <div class="homepage_border">
     <div class="homepage">
       <div>청송군 홈페이지</div>
-      <a href="{% url 'datas:tour_detail' region_name %}">바로가기</a>
+      <a href="www.cs.go.kr">바로가기</a>
     </div>
   </div>
 
   <img src="{% static "img/region_detail1.png" %}"> <img src="{% static "img/region_detail2.png" %}">
 
-  <div></div>
+  <div class="data_bar">
+    <img src="{%static "img/car.png" %}">
+    <div>청송군 관광 데이터</div>
+    <a href="{% url 'datas:tour_detail' region_name %}">열람하기</a>
+  </div>
+  <div class="data_bar">
+    <img src="{%static "img/work.png" %}">
+    <div>청송군 일자리지원센터</div>
+    <a href="https://gyeongbuk.work.go.kr/cheongsong/main.do">바로가기</a>
+  </div>
 </div>
 {% endblock %}

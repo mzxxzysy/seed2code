@@ -38,7 +38,7 @@
     {
       "id": 6,
       "name": "식품제조 영양/조리사",
-      "description": "식품제조 기업이 위치해있고 병원 및 요양시설이 있어서 양양사와 조리사를 자주 뽑는다.",
+      "description": "식품제조 기업이 위치해있고 병원 및 요양시설이 있어서 영양사와 조리사를 자주 뽑는다.",
       "salary": 350,
       "image": "img/cook.png"
     }
@@ -107,49 +107,49 @@
     {
       "category": "mountain",
       "name": "주왕산",
-      "description": "설명",
-      "image": "img/juwangsan.jpg"
+      "description": "청송군에는 3대 암산으로 꼽히는 주왕산이 있습니다. 태백산맥의 남단에 위치하며 암벽으로 둘러싸인 산들이 병풍처럼 이어집니다.",
+      "image": "img/juwangsan.png"
     },
     {
       "category": "mountain",
-      "name": "철골 계곡",
-      "description": "설명",
-      "image": "img/cheolgol.jpg"
+      "name": "절골 계곡",
+      "description": "절골 계곡은 전체적으로 아름다운 풍경을 가지고 있으며 가벼운 산행을 즐기기 좋은 곳입니다.",
+      "image": "img/jeolgol.png"
     },
     {
       "category": "mountain",
       "name": "백석탄 계곡",
-      "description": "설명",
-      "image": "img/baekseoktan.jpg"
+      "description": "고와리에 흐르는 하천을 따라 개울 바닥의 흰 바위가 오랜 세월 동안 독특한 모양으로 깎여 만들어진 포트홀 지형입니다. 또한 백석탄 계곡은 유네스코 세계 지질공원 명소입니다.",
+      "image": "img/baekseok.jpg"
     },
     {
       "category": "nature",
       "name": "왕버들 고목",
-      "description": "설명",
+      "description": "청송군에는 저수지에 자생하는 왕버들고목이 있습니다. 청송관리왕버들은 대한민국의 천연기념물 제 193호입니다",
       "image": "img/tree.jpg"
     },
     {
       "category": "nature",
       "name": "청송 얼음골",
-      "description": "설명",
+      "description": "주왕산면 내룡리에서 조금 걸어가면 인적이 드문 잣밭골이 나옵니다. 잣밭골 입구에 웅덩이처럼 파진 곳이 있습니다.",
       "image": "img/ice.jpg"
     },
     {
       "category": "nature",
       "name": "온천",
-      "description": "설명",
-      "image": "img/placespa.jpg"
+      "description": "청송군에는 청송솔기온천과 솔샘온천이 있습니다. 청정자연이 뿜어내는 최고 수질의 온천수를 즐길 수 있습니다.",
+      "image": "img/placespa.png"
     },
     {
       "category": "museum",
       "name": "산소카페 청송정원",
-      "description": "설명",
+      "description": "때에 맞춰 방문한다면 백일홍이 아름답게 정원 전체를 뒤덮고 있는 모습을 볼 수 있습니다.",
       "image": "img/garden.jpg"
     },
     {
       "category": "museum",
       "name": "국립청송야송미술관",
-      "description": "설명",
+      "description": "경북지역 대표 미술관으로, 야송 이원좌 화백이 소장하고 있던 한국화 및 도예작품 등 350점, 국내외 유명 화가와 조각가들의 작품 50여 점을 소유하고 있습니다.",
       "image": "img/museum.jpg"
     }
   ],

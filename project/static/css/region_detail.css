@@ -90,3 +90,32 @@ img {
   padding: 7px;
   margin-top: 5px;
 }
+
+.data_bar {
+  width: 335px;
+  height: 54px;
+
+  border: 1px solid #c06a89;
+  border-radius: 5px;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 12px;
+
+  margin: 7px 0;
+}
+
+.data_bar img {
+  width: 43px;
+  height: 40px;
+}
+
+.data_bar a {
+  text-decoration: none;
+  color: white;
+  background-color: #c06a89;
+  border-radius: 16px;
+  padding: 7px;
+}

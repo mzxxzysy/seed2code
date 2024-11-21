@@ -1,15 +1,18 @@
-{% load static %}
 
-<div class="container">
-    <h1>병원 방문</h1>
-    <div>
-        <h2>{{ hospital.name }}</h2>
-        <img src="{% static 'img/hospital.png' %}" alt="Hospital" />
-        <p>병원 비용: {{ hospital.price }}만원</p>
-        <p>{{ hospital.description }}</p>
-    </div>
-    <form method="post">
-        {% csrf_token %}
-        <button type="submit">다음으로</button>
-    </form>
+{% extends 'gamebase.html' %} {% load static %} {% block title %}병원 방문{% endblock %} {% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/gamebase.css' %}" />
+<link rel="stylesheet" href="{% static 'css/night.css' %}" />
+{% endblock %}{% block game_info %}
+<div>{{ hospital.name }}에 왔습니다.</div>
+<div>다행히 큰 병은 아니었네요.</div>
+{% endblock %} {% block game_content %}
+<img src="{% static 'img/hospital.png' %}" alt="Hospital" />
+ {% endblock %}{% block game_info2 %}
+  <div>{{ hospital.description }}</div>
+  <div>총 {{ hospital.price }}만원이 지출되었습니다.</div>
+  <form method="post">
+    {% csrf_token %}
+    <button type="submit" class="next" style="top:0px"><img src="{%static "img/game_next_btn.png" %}"></button>
+  </form>
 </div>
+{% endblock %}

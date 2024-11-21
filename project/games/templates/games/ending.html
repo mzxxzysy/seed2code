@@ -1,10 +1,25 @@
-<div class="container">
-    <h2>게임 종료</h2>
-    <div class="ending-stats">
-        <p>{{ custom_user.play_count }}번째 삶</p>
-        <p>체험 지역: {{ region }}</p>
-        <p>최종 자산: {{ game.current_money }}만원</p>
-        <p>선택한 직업: {{ game.job.name }}</p>
-        <!-- Add more ending statistics here -->
-    </div>
+{% extends 'base.html' %} {% load static %} {% block title %}ending{% endblock %} {% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/ending.css' %}" />
+{% endblock %} {% block content %}
+<div class="ending_info">
+  <div>지역 체험이 모두 끝났습니다.</div>
+  <div>수고하셨습니다!</div>
 </div>
+<div class="life_count">
+  <div>{{ custom_user.play_count }}번째 삶 결과</div>
+</div>
+<div class="result_box">
+  <div class="result">
+    <div class="cate">체험 지역</div>
+    <div class="data">{{ region }}</div>
+  </div>
+  <div class="result">
+    <div class="cate">총 소지금</div>
+    <div class="data">{{ game.current_money }}만원</div>
+  </div>
+  <div class="result">
+    <div class="cate">직업</div>
+    <div class="data">{{ game.job.name }}</div>
+  </div>
+</div>
+{% comment %} <img src="{% static "img/ending_cat.png" %}" class="ending_cat"> {% endcomment %} {% endblock %}

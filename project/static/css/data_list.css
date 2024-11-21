@@ -1,48 +1,95 @@
+.nav_bar {
+  position: relative;
+  bottom: 80px;
+}
+
+.content {
+  overflow: scroll;
+  justify-content: start;
+}
+
 .data_title {
   width: 359px;
   height: 85px;
-  margin: 30%;
+  margin-top: 10%;
 }
 
+/* 리스트 전체 */
 ul {
+  list-style: none;
   padding: 0;
+  margin: 0;
+  padding-bottom: 30%;
 }
 
 li {
-  list-style: none;
+  margin: 5px 0;
+  width: 414px;
+  height: 42vh;
+  border-radius: 10px;
   background-image: url("../img/data_sum.png");
-  width: 355px;
-  height: 415px;
-  background-size: contain;
+  background-size: 367px 407px;
   background-repeat: no-repeat;
   background-position: center;
-
-  margin-bottom: 30px;
+  padding: 40px 0;
 
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
-hr {
-  width: 316px;
-  color: #c06a89;
+.region_data {
+  padding: 10px 15px;
+  background-image: url("../img/data_region.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+
+  position: relative;
+  margin-top: 30px;
 }
 
+.region_data div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  position: relative;
+  right: 8px;
+  bottom: 4px;
+}
+
+.region_name {
+  position: relative;
+  left: 50px;
+  top: 1px;
+}
+
+.region_data a {
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: bold;
+  color: white;
+  background-color: #c06a89;
+  padding: 5px 10px;
+  border-radius: 15px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.region_data a:hover {
+  background-color: #c06a89;
+}
+
+/* 지도 이미지 */
 .map {
   width: 313px;
   height: 253px;
+  border-radius: 10px;
+  position: relative;
+  top: 10px;
+  right: 6px;
 }
 
-.region_data {
-  width: 100%;
-  height: 10%;
-  background-image: url("../img/data_title.png");
-  background-repeat: no-repeat;
-  background-position: center;
-}
-
-.content {
-  padding-bottom: 20%;
+hr {
+  width: 300px;
+  color: #c06a89;
 }

@@ -21,7 +21,7 @@ label {
   gap: 20px; /* 위아래 간격 */
 
   position: relative;
-  top: 50px;
+  top: 55px;
 }
 
 .row {
@@ -51,11 +51,18 @@ label {
 button {
   border: none;
   background-color: rgb(0, 0, 0, 0);
-  position: relative;
-  left: 33%;
-  top: 30px;
 
   :hover {
     cursor: pointer;
   }
+}
+
+button img {
+  position: relative;
+  right: 15%;
+  top: 15px;
+}
+
+.game_contents {
+  height: 36vh;
 }

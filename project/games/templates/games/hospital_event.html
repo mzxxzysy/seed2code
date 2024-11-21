@@ -1,10 +1,17 @@
-{% load static %}
-<body>
-    <p>아픕니다.</p>
-    <img src="{% static 'img/sick.png' %}" alt="Hospital Event" />
 
-    <form method="POST">
-        {% csrf_token %}
-        <button type="submit">다음으로</button>
-    </form>
-</body>
+{% extends 'gamebase.html' %} {% load static %} {% block title %}아픔 이슈{% endblock %} {% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/gamebase.css' %}" />
+<link rel="stylesheet" href="{% static 'css/night.css' %}" />
+{% endblock %}{% block game_info %}
+<div>이럴수가! 몸이 너무 아파요.</div>
+<div>아무래도 병원을 가야할 것 같습니다.</div>
+{% endblock %} {% block game_content %}
+<img src="{% static 'img/sick.png' %}" alt="Hospital Event" />
+ {% endblock %}{% block game_info2 %}
+  <div>어서 병원으로 갑시다!</div>
+  <form method="post">
+    {% csrf_token %}
+    <button type="submit" class="next"><img src="{%static "img/game_next_btn.png" %}"></button>
+  </form>
+</div>
+{% endblock %}

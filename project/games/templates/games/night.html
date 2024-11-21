@@ -1,10 +1,16 @@
-{% load static %}
+{% extends 'gamebase.html' %} {% load static %} {% block title %}맛집 탐방{% endblock %} {% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/gamebase.css' %}" />
+<link rel="stylesheet" href="{% static 'css/night.css' %}" />
+{% endblock %}{% block game_info %}
+<div>밤이 되었습니다.</div>
+{% endblock %} {% block game_content %}
 
-<div class="container">
-    <h2>밤이 되었습니다.</h2>
-    <img src="{% static 'img/sleep.png' %}">
-    <form method="POST">
-        {% csrf_token %}
-        <button type="submit" class="btn btn-primary">다음 날로</button>
-    </form>
+<img src="{% static 'img/sleep.png' %}">
+ {% endblock %}{% block game_info2 %}
+  <div>잘자요!</div>
+  <form method="post">
+    {% csrf_token %}
+    <button type="submit" class="next"><img src="{%static "img/game_next_btn.png" %}"></button>
+  </form>
 </div>
+{% endblock %}

@@ -6,4 +6,51 @@
   display: flex;
   justify-content: center;
   align-items: center;
+
+  font-size: 24px;
+  text-align: center;
+}
+
+.span {
+  color: #c06a89;
+}
+
+.rec_region {
+  width: 318px;
+  height: 219px;
+  margin-top: 20px;
+
+  background-color: white;
+  border: 3px solid transparent;
+  background-image: linear-gradient(#fff, #fff), linear-gradient(to bottom, #c06a89 0%, black 100%);
+  background-origin: border-box;
+  background-clip: content-box, border-box;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: start;
+}
+
+.rec_region a {
+  width: 241px;
+  height: 59px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: #c06a89;
+  border: 1px solid #c06a89;
+  border-radius: 5px;
+  margin-top: 20px;
+}
+
+.info {
+  margin: 20px 0;
+}
+
+a {
+  text-decoration: none;
+  color: black;
 }

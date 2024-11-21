@@ -23,8 +23,8 @@
       <img src="{% static 'img/nav_record_off.png' %}" class="nav_icon" />
       {% endif %}
     </a>
-    <a href="">
-      {% comment %}{% url 'datas:list' %} {% endcomment %} {% if '/datas' in request.path %}
+    <a href="{% url 'datas:list' %}">
+      {% if '/datas' in request.path %}
       <img src="{% static 'img/nav_info_on.png' %}" class="nav_icon" />
       {% else %}
       <img src="{% static 'img/nav_info_off.png' %}" class="nav_icon" />

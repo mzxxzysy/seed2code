@@ -15,7 +15,7 @@
         <div class="select-box">
           <input type="radio" name="house_id" id="{{ house.id }}" value="{{ forloop.counter0 }}" onclick="selectBox(event)" required />
           <label for="{{ house.id }}">
-            <img src="{%static house.image %}" class="house_img" />
+            <img src="{% static house.image %}" class="house_img" />
 
             <div class="house_info">
               <div class="house_name">{{ house.name }}</div>
@@ -31,28 +31,25 @@
     <button type="submit"><img src="{% static "img/blue_next.png" %}"></button>
   </form>
 </div>
-{% endblock %} {% block game_info2 %}
-<div>주택 이름은 가명입니다.</div>
-<div>해당 지역의 부동산 월세를 참고하였습니다.</div>
-{% endblock %} {% comment %} {% block content %}
 <script>
   function selectBox(event) {
     // 모든 label에서 'selected' 클래스 제거
     document.querySelectorAll("label").forEach((label) => {
       label.classList.remove("selected");
-      label.style.border = "none";
+      label.style.backgroundColor = "rgb(0,0,0,0)";
     });
 
-    // 클릭된 input 요소의 id
     const inputId = event.target.id;
 
-    // input에 연결된 label 선택
     const label = document.querySelector(`label[for='${inputId}']`);
 
-    // 클릭된 label에 'selected' 클래스 추가
     if (label) {
-      label.style.border = "2px solid #74cadd";
+      label.style.backgroundColor = "#74cadd";
+      label.style.borderRadius = "5px";
     }
   }
 </script>
-{% endblock %} {% endcomment %}
+{% endblock %} {% block game_info2 %}
+<div>주택 이름은 가명입니다.</div>
+<div>해당 지역의 부동산 월세를 참고하였습니다.</div>
+{% endblock %}

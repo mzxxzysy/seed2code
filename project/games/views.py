@@ -25,7 +25,7 @@ def job_detail(request, job_id):
         game = Game.objects.create(
             user=custom_user,
             job=job,
-            hospital_visited=random.randint(1, 4)
+            hospital_visited=random.randint(3, 4)
         )
 
         return redirect("games:select_house", game_id=game.id)

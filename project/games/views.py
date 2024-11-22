@@ -22,10 +22,13 @@ def job_detail(request, job_id):
     if request.method == "POST":
         custom_user = request.user.customuser
 
+        hospital_month = random.randint(1, 2)
+        print(f"Setting hospital visit month to: {hospital_month}")
+
         game = Game.objects.create(
             user=custom_user,
             job=job,
-            hospital_visited=random.randint(1, 3)
+            hospital_visited=hospital_month
         )
 
         return redirect("games:select_house", game_id=game.id)
@@ -82,12 +85,8 @@ def game_start(request, month, time):
     game.current_month = month
     game.is_morning = time
 
-    print(game.hospital_visited)
+    print(f"Current Month: {month}, Hospital Visit Month: {game.hospital_visited}, Time: {time}")
 
-    if game.hospital_visited == month and time == 3:  
-        return redirect('games:hospital_event', game_id=game.id)
-
-    # 월간 정산
     if time == 1 and prev_month < month:
         game.current_money += game.job.salary
         game.current_money -= game.house.monthly_rent
@@ -99,7 +98,11 @@ def game_start(request, month, time):
             return redirect('games:game_fail', game_id=game.id)
     
     game.save()
-
+    
+    if game.hospital_visited == month and time == 3:  
+        print(f"Redirecting to hospital event. Month: {month}")
+        return redirect('games:hospital_event', game_id=game.id)
+    
     # 오전 일정
     if time == 1:
         if month == 3:
@@ -116,7 +119,7 @@ def game_start(request, month, time):
     elif time == 2:
         if month == 3:
             if request.method == 'POST':
-                return redirect('games:game_start', month=month, time=3)
+                return redirect('games:night_transition', month=month)
             return render(request, 'games/festival.html', {'game': game})
 
         if request.method == 'POST':
@@ -163,6 +166,7 @@ def game_start(request, month, time):
                 return render(request, 'games/cooking_result.html', context)
             
             return redirect('games:game_start', month=month, time=3)  # 오후 일정 완료 후 병원 체크
+        
         context = {
             'game': game,
             'month': month,
@@ -175,14 +179,9 @@ def game_start(request, month, time):
     elif time == 3:
         if request.method == 'POST':
             if game.hospital_visited == month:
+                print(f"Night check - Redirecting to hospital. Month: {month}")
                 return redirect('games:hospital_event', game_id=game.id)
-            else:
-                return redirect('games:night_transition', month=month)
-        
-        return render(request, 'games/night.html', {
-            'game': game,
-            'month': month
-        })
+            return redirect('games:night_transition', month=month)
 
 @login_required
 def night_transition(request, month):
@@ -200,13 +199,12 @@ def night_transition(request, month):
 
 @login_required
 def hospital_event(request, game_id):
-    selection_data = load_selection()
     game = get_object_or_404(Game, id=game_id)
 
     if request.method == 'POST':
         return redirect('games:hospital_visit', game_id=game.id)
 
-    return render(request, 'games/hospital_event.html')
+    return render(request, 'games/hospital_event.html', {'game': game})
 
 @login_required
 def hospital_visit(request, game_id):
@@ -216,7 +214,9 @@ def hospital_visit(request, game_id):
     if request.method == 'POST':
         game.hospital_visited = 0
         game.save()
-        return redirect('games:game_start', month=game.current_month+1, time=1)
+        if game.current_month == 3:
+            return redirect('games:game_start', month=game.current_month+1, time=1)
+        return redirect('games:night_transition', month=game.current_month)
 
     selected_hospital = random.choice(selection_data['hospitals'])
     game.current_money -= selected_hospital['price']
@@ -228,9 +228,6 @@ def hospital_visit(request, game_id):
 def restaurant_detail(request, game_id, restaurant_name):
     selection_data = load_selection()
     game = get_object_or_404(Game, id=game_id)
-    
-    if game.user != request.user.customuser:
-        raise PermissionDenied("권한이 없습니다.")
     
     selected_restaurant = next(
         (r for r in selection_data['restaurants'] if r['name'] == restaurant_name), 
@@ -247,8 +244,8 @@ def restaurant_detail(request, game_id, restaurant_name):
     game.save()
     
     if request.method == 'POST':
-        if game.hospital_visited == 1:
-            return redirect('games:hospital_visit', game_id=game.id)
+        if game.current_month == 1 and game.hospital_visited == 1:
+            return redirect('games:hospital_event', game_id=game.id)
         return redirect('games:night_transition', month=1)
         
     context = {
@@ -272,6 +269,8 @@ def place_detail(request, game_id, category):
     game.save()
     
     if request.method == 'POST':
+        if game.current_month == 2 and game.hospital_visited == 2:
+            return redirect('games:hospital_event', game_id=game.id)
         return redirect('games:night_transition', month=2)
     
     return render(request, 'games/place_detail.html', {'place': selected_place, 'game_id': game_id})
@@ -312,12 +311,9 @@ def get_cooking_result(selected_ingredients):
 def cooking_result(request, game_id):
     game = get_object_or_404(Game, id=game_id)
     
-    if game.user != request.user.customuser:
-        raise PermissionDenied("권한이 없습니다.")
-    
     if request.method == 'POST':
-        if game.hospital_visited == 4:
-            return redirect('games:hospital_visit', game_id=game.id)
+        if game.current_month == 4 and game.hospital_visited == 4:
+            return redirect('games:event', game_id=game.id)
         else:
             return redirect('games:game_ending', game_id=game.id)
     

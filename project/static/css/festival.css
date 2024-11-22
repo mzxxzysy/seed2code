@@ -3,7 +3,18 @@
   top: 20px;
 }
 
-.next {
+/* .next {
   left: 150px;
   top: 5px;
+} */
+
+.game_contents {
+  height: 32vh;
+}
+
+.user_datas {
+  top: 25px;
+}
+.user_data {
+  font-size: 13px;
 }

@@ -2,6 +2,8 @@
 {% extends 'gamebase.html' %} {% load static %} {% block title %}아픔 이슈{% endblock %} {% block extra_css %}
 <link rel="stylesheet" href="{% static 'css/gamebase.css' %}" />
 <link rel="stylesheet" href="{% static 'css/night.css' %}" />
+{% endblock %}{% block day_night %}
+<img src="{%static "img/night.png" %}">
 {% endblock %}{% block game_info %}
 <div>이럴수가! 몸이 너무 아파요.</div>
 <div>아무래도 병원을 가야할 것 같습니다.</div>

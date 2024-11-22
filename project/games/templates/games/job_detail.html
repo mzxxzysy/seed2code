@@ -1,7 +1,7 @@
 {% extends 'gamebase.html' %} {% load static %} {% block title %}직업 선택{% endblock %} {% block extra_css %}
 <link rel="stylesheet" href="{% static 'css/gamebase.css' %}" />
 <link rel="stylesheet" href="{% static 'css/job_detail.css' %}" />
-{% endblock %} {% block game_info %}
+{% endblock %} {% block day_night %} <img src="{%static "img/day.png" %}"> {% endblock %}{% block game_info %}
 
 <div>당신은 {{ job.name }}입니다!</div>
 <div>매월 {{ job.salary }}만원 급여를 지급합니다.</div>

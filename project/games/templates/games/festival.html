@@ -1,7 +1,16 @@
 {% extends 'gamebase.html' %} {% load static %} {% block title %}오후 스케줄{% endblock %} {% block extra_css %}
 <link rel="stylesheet" href="{% static 'css/gamebase.css' %}" />
 <link rel="stylesheet" href="{% static 'css/festival.css' %}" />
-{% endblock %} {% block game_info %} {% if game.is_morning == 1 %}
+{% endblock %} 
+{% block day_night %}
+{% if game.is_morning == 1 %}
+<img src="{%static "img/day.png" %}">
+{% elif game.is_morning == 2 %}
+<img src="{%static "img/night.png" %}">
+{% endif %}
+{% endblock %}
+
+{% block game_info %} {% if game.is_morning == 1 %}
 <div>오늘은 휴일이라 축제에 놀러왔습니다.</div>
 <div>지금은 청송사과 축제가 열렸네요!</div>
 {% elif game.is_morning == 2 %}

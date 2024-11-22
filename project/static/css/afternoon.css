@@ -6,11 +6,11 @@
   height: 32vh;
 }
 
-.next {
+/* .next {
   position: relative;
   left: 150px;
   top: 10px;
-}
+} */
 
 .month-1 {
   width: 100%;
@@ -68,8 +68,8 @@ button {
 
 button img {
   position: relative;
-  right: 15%;
-  bottom: 16px;
+  right: 5px;
+  bottom: 10px;
 }
 
 .month-2 {
@@ -171,4 +171,8 @@ button img {
 /* 체크 상태에 따른 색상 변경 */
 input[type="checkbox"]:checked {
   background-color: #c06a89;
+}
+
+.real_price {
+  font-size: 15px;
 }

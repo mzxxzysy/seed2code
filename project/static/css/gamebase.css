@@ -13,16 +13,18 @@
 }
 
 .game_info2 {
-  width: 383px;
-  height: 97px;
+  width: 363px;
+  height: 77px;
   background-color: white;
   border-radius: 5px;
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15), 0 2px 2px rgba(0, 0, 0, 0.15), 0 4px 4px rgba(0, 0, 0, 0.15), 0 8px 8px rgba(0, 0, 0, 0.15);
+
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   margin-top: 20px;
+  padding: 10px;
 }
 
 .content {

@@ -87,3 +87,22 @@ body {
   margin: 0 10px;
   z-index: 50;
 }
+
+.go_home {
+  text-decoration: none;
+  color: white;
+  background-color: #c06a89;
+  border-radius: 5px;
+  padding: 5px;
+  position: relative;
+  top: 15px;
+  background-color: #c06a89;
+  border-radius: 5px;
+
+  color: white;
+  font-size: 14px;
+  font-weight: 300;
+
+  border: 1px solid white;
+  box-shadow: 0 0 0 6px #c06a89;
+}

@@ -8,7 +8,11 @@ html {
 }
 
 .input input {
-  margin: 5px 0 15px;
+  margin: 7px;
+}
+
+.input div {
+  margin-left: 10px;
 }
 
 .go_login {
@@ -16,7 +20,7 @@ html {
   flex-direction: row;
 
   position: relative;
-  margin-top: 18px;
+  margin-top: 10px;
 }
 
 .go_login a {

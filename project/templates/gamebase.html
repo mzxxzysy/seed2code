@@ -1,11 +1,11 @@
 {% extends 'base.html' %} {% load static %} {% block extra_css %}
 <link rel="stylesheet" href="{% static 'css/gamebase.css' %}" />
-{% endblock %} {% block content %}
-
+{% endblock %} {% block content %} {% if game.house %}
 <header>
   <div>{% block day_night %} {% endblock %}</div>
   <div>{{ game.current_month }}번째 달</div>
 </header>
+{% endif %}
 
 <div class="game_info">{% block game_info %} {% endblock %}</div>
 <div class="game_contents">{% block game_content %} {% endblock %}</div>

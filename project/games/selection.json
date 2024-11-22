@@ -91,14 +91,14 @@
     {
       "name": "농가맛집 두연",
       "price": 2,
-      "menu": "특선 코다리찜과 스페셜 세트 ",
+      "menu": "특선 코다리찜 ",
       "menu_img": "img/nongga.png",
       "real_price": 20000
     },
     {
       "name": "주왕산명일식당",
       "price": 1,
-      "menu": "손칼국수와 사과막걸리 ",
+      "menu": "칼국수와 사과막걸리 ",
       "menu_img": "img/myeong.png",
       "real_price": 8000
     }
@@ -142,13 +142,13 @@
     },
     {
       "category": "museum",
-      "name": "산소카페 청송정원",
+      "name": "청송정원",
       "description": "때에 맞춰 방문한다면 백일홍이 아름답게 정원 전체를 뒤덮고 있는 모습을 볼 수 있습니다.",
       "image": "img/garden.jpg"
     },
     {
       "category": "museum",
-      "name": "국립청송야송미술관",
+      "name": "야송미술관",
       "description": "경북지역 대표 미술관으로, 야송 이원좌 화백이 소장하고 있던 한국화 및 도예작품 등 350점, 국내외 유명 화가와 조각가들의 작품 50여 점을 소유하고 있습니다.",
       "image": "img/museum.jpg"
     }

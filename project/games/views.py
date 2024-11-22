@@ -23,7 +23,6 @@ def job_detail(request, job_id):
         custom_user = request.user.customuser
 
         hospital_month = random.randint(1, 2)
-        print(f"Setting hospital visit month to: {hospital_month}")
 
         game = Game.objects.create(
             user=custom_user,
@@ -85,8 +84,6 @@ def game_start(request, month, time):
     game.current_month = month
     game.is_morning = time
 
-    print(f"Current Month: {month}, Hospital Visit Month: {game.hospital_visited}, Time: {time}")
-
     if time == 1 and prev_month < month:
         game.current_money += game.job.salary
         game.current_money -= game.house.monthly_rent
@@ -100,7 +97,6 @@ def game_start(request, month, time):
     game.save()
     
     if game.hospital_visited == month and time == 3:  
-        print(f"Redirecting to hospital event. Month: {month}")
         return redirect('games:hospital_event', game_id=game.id)
     
     # 오전 일정
@@ -179,7 +175,6 @@ def game_start(request, month, time):
     elif time == 3:
         if request.method == 'POST':
             if game.hospital_visited == month:
-                print(f"Night check - Redirecting to hospital. Month: {month}")
                 return redirect('games:hospital_event', game_id=game.id)
             return redirect('games:night_transition', month=month)
 
@@ -261,6 +256,13 @@ def place_detail(request, game_id, category):
     game = get_object_or_404(Game, id=game_id)
     places = [p for p in selection_data['places'] if p['category'] == category]
     
+    if category == 'nature':
+        type = '자연 명소'
+    elif category == 'mountain':
+        type = '산 혹은 계곡'
+    elif category == 'museum':
+        type = '박물관 혹은 공원'
+
     if not places:
         return redirect('games:night_transition', month=2)
 
@@ -273,7 +275,7 @@ def place_detail(request, game_id, category):
             return redirect('games:hospital_event', game_id=game.id)
         return redirect('games:night_transition', month=2)
     
-    return render(request, 'games/place_detail.html', {'place': selected_place, 'game_id': game_id})
+    return render(request, 'games/place_detail.html', {'type': type, 'place': selected_place, 'game_id': game_id})
 
 def get_cooking_result(selected_ingredients):
     if set(selected_ingredients) == {"떡국떡"} or set(selected_ingredients) >= {"떡국떡", "곶감", "미꾸라지"}:

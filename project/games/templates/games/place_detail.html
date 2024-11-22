@@ -2,7 +2,7 @@
 <link rel="stylesheet" href="{% static 'css/gamebase.css' %}" />
 <link rel="stylesheet" href="{% static 'css/place_detail.css' %}" />
 {% endblock %}{% block day_night %} <img src="{%static "img/night.png" %}"> {% endblock %}{% block game_info %}
-<div>경상북도 청송군의 산 혹은 계곡 중</div>
+<div>경상북도 청송군의 {{ type }}</div>
 <div><span class="pink">{{ place.name }}</span>에 놀러왔습니다.</div>
 {% endblock %} {% block game_content %}
 <img src="{% static place.image %}" alt="{{ place.name }}" />

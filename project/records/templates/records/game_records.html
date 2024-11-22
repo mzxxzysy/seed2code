@@ -2,13 +2,14 @@
 <link rel="stylesheet" href="{% static 'css/records.css' %}" />
 {% endblock %} {% block content %} <img src="{% static "img/record_page.png" %}" class="data_title">
 <ul>
-  {% for game in games %}
+  {% for game in games %} {% if game.play_count != 0 %}
   <li>
     <a href="{% url 'records:record_detail' game_id=game.id %}" class="record">
       <div>{{ game.play_count }}번째 삶 - {{ game.region }}</div>
       <img src="{% static "img/car.png" %}">
     </a>
   </li>
-  {% endfor %}
+  {% endif %} {% endfor %}
 </ul>
+
 {% endblock %}

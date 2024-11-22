@@ -7,14 +7,14 @@
 {% endblock %}{% block game_info %}
 <div class="warning"><img src="{% static "img/warning.png" %}"></div>
 <div class="hos_info">
-  <div>이럴수가! 몸이 너무 아파요.</div>
-  <div>아무래도 <span class="pink">병원</span>을 가야할 것 같습니다.</div>
+  <div>몸이 우리한데...</div>
+  <div><span class="pink">병원</span> 가야 하는 거 아이가?</div>
 </div>
 
 {% endblock %} {% block game_content %}
 <img src="{% static 'img/sick.png' %}" alt="Hospital Event" />
  {% endblock %}{% block game_info2 %}
-  <div>어서 병원으로 갑시다!</div>
+  <div>퍼뜩 병원 가라!</div>
   <form method="post">
     {% csrf_token %}
     <button type="submit" class="next"><img src="{%static "img/game_next_btn.png" %}"></button>

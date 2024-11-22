@@ -3,8 +3,8 @@
 {% endblock %} {% block content %}
 
 <header>
-  <img src="{%static "img/day.png" %}">
-  <div>첫 번째 달</div>
+  <div>{% block day_night %} {% endblock %}</div>
+  <div>{{ game.current_month }}번째 달</div>
 </header>
 
 <div class="game_info">{% block game_info %} {% endblock %}</div>

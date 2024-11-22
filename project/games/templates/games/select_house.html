@@ -1,42 +1,42 @@
 {% extends 'gamebase.html' %} {% load static %} {% block title %}직업 선택{% endblock %} {% block extra_css %}
 <link rel="stylesheet" href="{% static 'css/gamebase.css' %}" />
 <link rel="stylesheet" href="{% static 'css/select_house.css' %}" />
-{% endblock %} {% block game_info %}
+{% endblock %}{% block day_night %} <img src="{%static "img/day.png" %}"> {% endblock %} {% block game_info %}
 <div>앞으로 살 집을 골라주세요.</div>
 <div>매달 월세가 나가니 신중히 선택해주세요.</div>
 {% endblock %} {% block game_content %}
 <div class="container">
-<form method="post">
+  <form method="post">
     {% csrf_token %}
 
     <div class="select-container">
-        <div class="row">
+      <div class="row">
         {% for house in houses %}
         <div class="select-box">
-            <input type="radio" name="house_id" id="{{ house.id }}" value="{{ house.id }}" onclick="selectBox(event)" required />
-            <label for="{{ house.id }}">
+          <input type="radio" name="house_id" id="{{ house.id }}" value="{{ house.id }}" onclick="selectBox(event)" required />
+          <label for="{{ house.id }}">
             <img src="{% static house.image %}" class="house_img" />
 
             <div class="house_info">
-                <div class="house_name">{{ house.name }}</div>
-                <div class="house_money">보증금 {{ house.deposit }}만원</div>
-                <div class="house_money">월세 {{ house.monthly_rent }}만원</div>
+              <div class="house_name">{{ house.name }}</div>
+              <div class="house_money">보증금 {{ house.deposit }}만원</div>
+              <div class="house_money">월세 {{ house.monthly_rent }}만원</div>
             </div>
-        </label>
+          </label>
         </div>
         {% if forloop.counter|divisibleby:2 %}
-    </div>
-    <div class="row">{% endif %} {% endfor %}</div>
+      </div>
+      <div class="row">{% endif %} {% endfor %}</div>
     </div>
     <button type="submit" class="next"><img src="{% static "img/blue_next.png" %}"></button>
   </form>
 </div>
 <script>
-    function selectBox(event) {
+  function selectBox(event) {
     // 모든 label에서 'selected' 클래스 제거
     document.querySelectorAll("label").forEach((label) => {
-        label.classList.remove("selected");
-        label.style.backgroundColor = "rgb(0,0,0,0)";
+      label.classList.remove("selected");
+      label.style.backgroundColor = "rgb(0,0,0,0)";
     });
 
     const inputId = event.target.id;
@@ -44,10 +44,10 @@
     const label = document.querySelector(`label[for='${inputId}']`);
 
     if (label) {
-        label.style.backgroundColor = "#74cadd";
-        label.style.borderRadius = "5px";
+      label.style.backgroundColor = "#74cadd";
+      label.style.borderRadius = "5px";
     }
-    }
+  }
 </script>
 {% endblock %} {% block game_info2 %}
 <div>주택 이름은 가명입니다.</div>

@@ -45,8 +45,7 @@
   background-color: rgb(0, 0, 0, 0);
   border: none;
   position: relative;
-  left: 38%;
-  top: 16px;
+  left: 11em;
 }
 
 .user_datas {
@@ -69,4 +68,20 @@
   align-items: center;
 
   gap: 10px;
+}
+
+header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+
+  width: 140px;
+  height: 43px;
+  border-radius: 5px;
+  background-color: white;
+
+  box-shadow: 0 5px 5px -5px;
+
+  margin-bottom: 5px;
 }

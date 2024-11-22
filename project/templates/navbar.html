@@ -16,7 +16,7 @@
       <img src="{% static 'img/nav_play_off.png' %}" class="nav_icon" />
       {% endif %}
     </a>
-    <a href="">
+    <a href="{% url 'records:list' %}">
       {% comment %}{% url 'records:list' %} {% endcomment %} {% if '/records' in request.path %}
       <img src="{% static 'img/nav_record_on.png' %}" class="nav_icon" />
       {% else %}

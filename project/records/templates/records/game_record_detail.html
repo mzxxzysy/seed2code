@@ -1,0 +1,33 @@
+<!-- records/templates/records/game_record_detail.html -->
+
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>{{ game.play_count }}번째 게임 결과</h1>
+  <div class="result_box">
+    <div class="result">
+      <div class="cate">체험 지역</div>
+      <div class="data">{{ game.region }}</div>
+    </div>
+    <div class="result">
+      <div class="cate">총 소지금</div>
+      <div class="data">{{ game.current_money }}만원</div>
+    </div>
+    <div class="result">
+      <div class="cate">직업</div>
+      <div class="data">{{ game.job.name }}</div>
+    </div>
+    <div class="result">
+      <div class="cate">만든 음식</div>
+      <div class="data">{{ game.cooked_food }}</div>
+    </div>
+    <div class="result">
+      <div class="cate">맛집 음식</div>
+      <div class="data">{{ game.visited_restaurant }}</div>
+    </div>
+    <div class="result">
+      <div class="cate">놀러간 곳</div>
+      <div class="data">{{ game.visited_place }}</div>
+    </div>
+  </div>
+{% endblock %}

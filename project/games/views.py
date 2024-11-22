@@ -82,14 +82,15 @@ def game_start(request, month, time):
     game.current_month = month
     game.is_morning = time
 
-    if game.hospital_visited == month and time == 2:
+    if game.hospital_visited == month and time == 3:  
         return redirect('games:hospital_event', game_id=game.id)
 
+    # 월간 정산
     if time == 1 and prev_month < month:
         game.current_money += game.job.salary
         game.current_money -= game.house.monthly_rent
         game.current_money -= (game.house.deposit)/12
-        game.current_money = (int)(game.current_money)
+        game.current_money = int(game.current_money)
         
         if game.current_money < 0:
             game.save()
@@ -113,7 +114,7 @@ def game_start(request, month, time):
     elif time == 2:
         if month == 3:
             if request.method == 'POST':
-                return redirect('games:night_transition', month=month)
+                return redirect('games:game_start', month=month, time=3)
             return render(request, 'games/festival.html', {'game': game})
 
         if request.method == 'POST':
@@ -149,18 +150,17 @@ def game_start(request, month, time):
                 if game.current_money < 0:
                     game.save()
                     return redirect('games:game_fail', game_id=game.id)
-                    
-                game.save()
                 
-                cooking_result = get_cooking_result(selected_ingredients)
+                cooking_result = get_cooking_result(selected_ingredients)     
+                game.cooked_food = cooking_result['result']  # 만든 음식 저장
+                game.save()
                 context = {
                     'game': game,
                     'result': cooking_result,
                 }
                 return render(request, 'games/cooking_result.html', context)
             
-            return redirect('games:night_transition', month=month)
-            
+            return redirect('games:game_start', month=month, time=3)  # 오후 일정 완료 후 병원 체크
         context = {
             'game': game,
             'month': month,
@@ -169,6 +169,17 @@ def game_start(request, month, time):
             'ingredients': selection_data['cooking_ingredients'] if month == 4 else None,
         }
         return render(request, 'games/afternoon.html', context)
+
+    elif time == 3:
+        if request.method == 'POST':
+            if game.hospital_visited == month:
+                return redirect('games:hospital_event', game_id=game.id)
+            return redirect('games:night_transition', month=month)
+        
+        return render(request, 'games/night.html', {
+            'game': game,
+            'month': month
+        })
 
 @login_required
 def night_transition(request, month):
@@ -225,6 +236,8 @@ def restaurant_detail(request, game_id, restaurant_name):
 
     if selected_restaurant:
         game.current_money -= selected_restaurant['price']
+        game.visited_restaurant = selected_restaurant.get('menu', '알 수 없음')
+        game.save()
         if game.current_money < 0:
             game.save()
             return redirect('games:game_fail', game_id=game.id)
@@ -245,12 +258,15 @@ def restaurant_detail(request, game_id, restaurant_name):
 @login_required
 def place_detail(request, game_id, category):
     selection_data = load_selection()
+    game = get_object_or_404(Game, id=game_id)
     places = [p for p in selection_data['places'] if p['category'] == category]
     
     if not places:
         return redirect('games:night_transition', month=2)
 
     selected_place = random.choice(places)
+    game.visited_place = selected_place.get('name', '알 수 없음')
+    game.save()
     
     if request.method == 'POST':
         return redirect('games:night_transition', month=2)
@@ -259,31 +275,31 @@ def place_detail(request, game_id, category):
 
 def get_cooking_result(selected_ingredients):
     if set(selected_ingredients) == {"떡국떡"} or set(selected_ingredients) >= {"떡국떡", "곶감", "미꾸라지"}:
-        result = "떡국을"
+        result = "떡국"
         description = "떡국떡을 끓인 육수에 곶감을 넣어 단맛을 더하고 미꾸라지를 추가해서 깊은 맛을 냈습니다. 색다른 맛이네요!"
         cook_img = "img/tteok.png"
         context = { "result": result, "description": description, "cook_img": cook_img }
         return context
     elif set(selected_ingredients) >= {"곶감", "청송사과", "귤"}:
-        result = "샐러드를"
+        result = "샐러드"
         description = "곶감과 청송사과, 귤을 함께 잘라서 상큼한 샐러드를 만들었습니다. 신선하고 맛있네요!"
         cook_img = "img/salad.png"
         context = { "result": result, "description": description, "cook_img": cook_img }
         return context
     elif set(selected_ingredients) >= {"청송사과", "오징어"} or set(selected_ingredients) == {"오징어"}:
-        result = "오징어 볶음을"
+        result = "오징어 볶음"
         description = "오징어 볶음 안에 청송사과를 넣어서 함께 볶았습니다. 달콤하고 짭조름한 맛이네요!"
         cook_img = "img/squid.png"
         context = { "result": result, "description": description, "cook_img": cook_img }
         return context
     elif set(selected_ingredients) >= {"미꾸라지", "귤"}:
-        result = "미꾸라지 찜을"
+        result = "미꾸라지 찜"
         description = "미꾸라지를 깨끗하게 손질하고 귤즙과 함께 찜통에 쪄냈습니다. 상큼하고도 건강한 음식이네요!"
         cook_img = "img/zzim.png"
         context = { "result": result, "description": description, "cook_img": cook_img }
         return context
     else:
-        result = "전부 섞어 먹는 음식을"
+        result = "전부 섞어 먹는 음식"
         description = "사온 재료랑 집에 있는 음식까지 전부 섞어서 먹었습니다. 정말 맛있네요!"
         cook_img = "img/every.png"
         context = { "result": result, "description": description, "cook_img": cook_img }
@@ -314,13 +330,13 @@ def game_ending(request, game_id):
     custom_user = request.user.customuser
     game = get_object_or_404(Game, id=game_id)
     game.is_active = False
-    game.save()
     custom_user.play_count += 1
     custom_user.save()
+    game.play_count = custom_user.play_count
+    game.save()
     
     context = {
         'game': game,
-        'region': '청송군',
         'custom_user': custom_user
     }
     return render(request, 'games/ending.html', context)

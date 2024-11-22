@@ -1,0 +1,16 @@
+<!-- records/templates/records/game_records.html -->
+
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>게임 기록</h1>
+  <ul>
+    {% for game in games %}
+      <li>
+        <a href="{% url 'records:record_detail' game_id=game.id %}">
+          {{ game.play_count }}번째 게임 - 체험 지역: {{ game.region }}
+        </a>
+      </li>
+    {% endfor %}
+  </ul>
+{% endblock %}

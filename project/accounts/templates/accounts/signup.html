@@ -22,7 +22,7 @@
                 <div>Confirm Password</div>
                 <input type="password" id="id_password2" name="password2" placeholder="비밀번호을 다시 입력해주세요"></div>
             <button type="submit" class="accounts_btn">
-                <div class="accounts_text">가입하기</div>
+                <div class="accounts_text" style="color: #438740;">가입하기</div>
             </button>
         </form>
     </div>
@@ -31,4 +31,6 @@
         <div class="go_su_btn">이미 계정이 있나요?</div>
         <a href="{% url 'accounts:login' %}">로그인하기</a>
     </div>
+
+    <script src="{% static 'js/signup.js' %}"></script>
 {% endblock %}

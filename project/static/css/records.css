@@ -1,0 +1,120 @@
+.data_title {
+  width: 160px;
+  height: 53px;
+  margin: 10%;
+}
+
+.content {
+  height: 100%;
+  overflow: scroll;
+  justify-content: start;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+
+  margin-bottom: 80px;
+}
+
+li {
+  width: 363px;
+  height: 65px;
+
+  border: 1px solid #c06a89;
+  border-radius: 10px;
+  background-color: white;
+
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.record {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+
+  text-decoration: none;
+  color: #c06a89;
+}
+
+.go_back {
+  width: 342px;
+  height: 34px;
+  padding: 10px;
+
+  border: 1px solid #c06a89;
+  border-radius: 15px;
+  background-color: white;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.go_back a {
+  text-decoration: none;
+  color: white;
+  background-color: #c06a89;
+  border-radius: 16px;
+  padding: 7px;
+}
+
+.result_box {
+  width: 292px;
+  height: 730px;
+  padding: 50px 30px;
+
+  background-image: url("../img/record_bg.png");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+
+  margin-bottom: 80px;
+}
+.result_box > div {
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+  margin-bottom: 20px;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 13px;
+}
+
+.cate {
+  position: relative;
+  left: 100px;
+}
+
+.data {
+  color: #c06a89;
+}
+
+.money {
+  background-image: url("../img/record_money.png");
+}
+
+.job {
+  background-image: url("../img/record_job.png");
+}
+
+.house {
+  background-image: url("../img/record_house.png");
+}
+
+.play {
+  background-image: url("../img/record_play.png");
+}
+
+.make_food,
+.restaurant {
+  background-image: url("../img/record_food.png");
+}

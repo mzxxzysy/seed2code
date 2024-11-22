@@ -1,1 +1,12 @@
-<a href="{% url 'accounts:login' %}">로그인으로...</a>
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>시작</title>
+  </head>
+  <body>
+    <a href="{% url 'accounts:login' %}"><img src="{% static "img/start.png" %}"></a>
+  </body>
+</html>

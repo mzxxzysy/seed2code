@@ -6,11 +6,11 @@
 <img src="{%static "img/night.png" %}">
 {% endblock %}{% block game_info %}
 <div>{{ hospital.name }}에 왔습니다.</div>
-<div>다행히 큰 병은 아니었네요.</div>
+<div>{{ hospital.description }}</div>
 {% endblock %} {% block game_content %}
 <img src="{% static 'img/hospital.png' %}" alt="Hospital" />
  {% endblock %}{% block game_info2 %}
-  <div>{{ hospital.description }}</div>
+  <div>{{ hospital.disease }}</div>
   <div>총 {{ hospital.price }}만원이 지출되었습니다.</div>
   <form method="post">
     {% csrf_token %}

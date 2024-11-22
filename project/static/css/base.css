@@ -49,10 +49,9 @@ body {
   outline: none;
 }
 
-.form div {
+.input div {
   display: flex;
   flex-direction: column;
-  align-items: start;
   color: #438740;
   font-size: 16px;
 }
@@ -82,7 +81,7 @@ body {
 }
 
 .accounts_text {
-  font-size: 25px;
+  font-size: 20px;
   font-weight: 600;
   margin: 4px 0 0;
 }

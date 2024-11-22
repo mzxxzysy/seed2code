@@ -34,7 +34,7 @@
 
 .game_contents {
   width: 414px;
-  height: 35vh;
+  height: 300px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -84,4 +84,11 @@ header {
   box-shadow: 0 5px 5px -5px;
 
   margin-bottom: 5px;
+}
+
+.blue {
+  color: #3896b5;
+}
+.pink {
+  color: #c64465;
 }

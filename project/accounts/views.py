@@ -22,9 +22,16 @@ def signup_view(request):
         )
         return redirect('accounts:login')
     
-    if not form.is_valid():
-        print(form.errors)
+    # if not form.is_valid():
+    #     print(form.errors)
+    # return render(request, 'accounts/signup.html', {'form': form})
+    
+    for field, errors in form.errors.items():
+        for error in errors:
+            messages.error(request, f"{field}: {error}")
+    
     return render(request, 'accounts/signup.html', {'form': form})
+
     
 def login_view(request):
     if request.method == 'POST':
@@ -36,8 +43,11 @@ def login_view(request):
             if user is not None:
                 login(request, user)
                 return redirect('main:main')
-            # else:
-            #     messages.error(request, "존재하지 않는 아이디 혹은 잘못된 비밀번호입니다.")
+            else:
+                messages.error(request, "존재하지 않는 아이디 혹은 잘못된 비밀번호입니다.")
+        else:
+            # form.is_valid()가 False일 때 메시지 추가
+            messages.error(request, "아이디와 비밀번호를 다시 확인해주세요.")
     else:
         form = AuthenticationForm()
     return render(request, 'accounts/login.html', {'form': form})

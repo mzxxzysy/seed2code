@@ -1,9 +1,9 @@
-{% extends 'base.html' %} {% load static %} {% block title %}ending{% endblock %} {% block extra_css %}
+{% extends 'base.html' %} {% load static %} {% block title %}게임 결과{% endblock %} {% block extra_css %}
 <link rel="stylesheet" href="{% static 'css/ending.css' %}" />
 {% endblock %} {% block content %}
 <div class="ending_info">
   <div>지역 체험이 모두 끝났습니다.</div>
-  <div>수고하셨습니다!</div>
+  <div class="pink">수고하셨습니다!</div>
 </div>
 <div class="life_count">
   <div>{{ game.play_count }}번째 삶 결과</div>

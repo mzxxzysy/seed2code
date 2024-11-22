@@ -1,29 +1,34 @@
-{% extends 'base.html' %} {% load static %} {% block title %}home{% endblock %} {% block extra_css %}
+{% extends 'base.html' %} {% load static %} {% block title %}메인 페이지{% endblock %} {% block extra_css %}
 <link rel="stylesheet" href="{% static 'css/main.css' %}" />
-{% endblock %} {% block content %} {% if user.is_authenticated %}
-<header>
-  <a href="{% url 'accounts:logout' %}" class="logout"> <img src="{% static "img/logout.png" %}"> </a>
-  <div class="user_info">
-    <img src="{% static custom_user.profile_image %}" class="profile" alt="Profile Image" />
-    <div class="main_info">
-      <div class="nickname">{{ custom_user.nickname }} 님</div>
-      <div>지금까지 <span>총 {{ custom_user.play_count }}번의 삶</span>을 살았습니다.</div>
+{% endblock %} {% block content %} 
+<div class="content_bg">
+  <header>
+    <a href="{% url 'accounts:logout' %}" class="logout"> <img src="{% static "img/logout.png" %}"> </a>
+    <div class="user_info">
+      <img src="{% static custom_user.profile_image %}" class="profile" alt="Profile Image" />
+      <div class="main_info">
+        <div class="nickname">{{ custom_user.nickname }} 님</div>
+        <div>지금까지 <span>총 {{ custom_user.play_count }}번의 삶</span>을 살았습니다.</div>
+      </div>
     </div>
-  </div>
-</header>
+  </header>
 
-<div class="accounts_btn">{{ next_play }}번째 삶은 <span>&nbsp;어디서&nbsp; </span> 시작할까요?</div>
-<div class="main_main">
-  <img src="{% static "img/select_region.png" %}" class="select">
-  <a href="{% url 'regions:test' question_number=1 %}"><img src="{% static "img/go_test.png" %}"></a>
+  <div class="accounts_btn">{{ next_play }}번째 삶은 <span>&nbsp;어디서&nbsp; </span> 시작할까요?</div>
+  <div class="main_main">
+    <div class="select" onclick="selectBox(event)"><img src="{% static "img/select_region.png" %}" ></div>
+    <a href="{% url 'regions:test' question_number=1 %}"><img src="{% static "img/go_test.png" %}"></a>
+  </div>
 </div>
 
-{% comment %}
-<p>마지막으로 플레이한 지역: {{ custom_user.last_region }}</p>
-{% endcomment %}
 
-<!-- 프로필 이미지 -->
+<div class="modal">
+  <div class="modal_popup">
+      <div class="x"><img src="{% static "img/X.png" %}" class="x"></div>
+      
+      <a href="{% url 'games:select_job' %}">경상북도 청송군</a>
+  </div>
+</div>
 
-{% else %}
-<p><a href="{% url 'accounts:login' %}">로그인</a></p>
-{% endif %} {% endblock %}
+
+<script src="{% static "js/main.js" %}"></script>
+{% endblock %}

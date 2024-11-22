@@ -57,7 +57,7 @@ span {
 }
 
 .main_main {
-  width: 100%;
+  width: 120%;
   height: 300px;
   background-image: url("../img/homepage.png");
   background-size: 300px 300px;
@@ -66,10 +66,81 @@ span {
 
   display: flex;
   justify-content: space-between;
+  position: relative;
+  right: 30px;
 }
 
 .main_main a {
   height: 114px;
   position: relative;
   top: 150px;
+}
+
+.select {
+  z-index: 50;
+  height: 114px;
+  position: relative;
+  top: 150px;
+
+  :hover {
+    cursor: pointer;
+  }
+}
+.modal {
+  width: 100%;
+
+  position: absolute;
+  top: 20%;
+
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  z-index: 2000;
+}
+
+.modal_popup {
+  width: 318px;
+  height: 409px;
+  margin-top: 20px;
+
+  background-color: white;
+  border: 3px solid transparent;
+  border-radius: 15px;
+  background-image: linear-gradient(#fff, #fff), linear-gradient(to bottom, #c06a89 0%, black 100%);
+  background-origin: border-box;
+  background-clip: content-box, border-box;
+
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: start;
+}
+
+.modal_popup a {
+  text-decoration: none;
+  width: 241px;
+  height: 59px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: #c06a89;
+  border: 1px solid #c06a89;
+  border-radius: 5px;
+  margin-top: 60px;
+}
+
+.x {
+  width: 24px;
+  height: 24px;
+  position: absolute;
+  top: 20px;
+  right: 35px;
+
+  :hover {
+    cursor: pointer;
+  }
 }

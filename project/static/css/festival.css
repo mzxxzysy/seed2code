@@ -3,13 +3,13 @@
   top: 20px;
 }
 
-/* .next {
-  left: 150px;
-  top: 5px;
-} */
+.next {
+  left: 170px;
+  top: 3px;
+}
 
 .game_contents {
-  height: 32vh;
+  height: 290px;
 }
 
 .user_datas {

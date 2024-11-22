@@ -1,11 +1,12 @@
 .fes_info2 {
   position: relative;
-  top: 20px;
+  bottom: 95px;
 }
 
 .next {
-  left: 170px;
-  top: 3px;
+  position: absolute;
+  top: 625px;
+  left: 355px;
 }
 
 .game_contents {
@@ -17,4 +18,15 @@
 }
 .user_data {
   font-size: 13px;
+}
+
+.fest_cat {
+  position: relative;
+  bottom: 95px;
+  right: 140px;
+}
+
+.fest_cats {
+  position: relative;
+  bottom: 90px;
 }

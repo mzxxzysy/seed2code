@@ -5,13 +5,13 @@
 {% endblock %}{% block day_night %}
 <img src="{%static "img/night.png" %}">
 {% endblock %}{% block game_info %}
-<div>{{ hospital.name }}에 왔습니다.</div>
-<div>{{ hospital.description }}</div>
+<div><span class="blue">{{ hospital.name }}</span>에 왔습니다.</div>
+<div><span class="pink">{{ hospital.description }}</span></div>
 {% endblock %} {% block game_content %}
 <img src="{% static 'img/hospital.png' %}" alt="Hospital" />
  {% endblock %}{% block game_info2 %}
   <div>{{ hospital.disease }}</div>
-  <div>총 {{ hospital.price }}만원이 지출되었습니다.</div>
+  <div>총 <span class="pink">{{ hospital.price }}만원</span>이 지출되었습니다.</div>
   <form method="post">
     {% csrf_token %}
     <button type="submit" class="next" style="top:0px"><img src="{%static "img/game_next_btn.png" %}"></button>

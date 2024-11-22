@@ -21,6 +21,9 @@ def signup_view(request):
             last_region=None
         )
         return redirect('accounts:login')
+    
+    if not form.is_valid():
+        print(form.errors)
     return render(request, 'accounts/signup.html', {'form': form})
     
 def login_view(request):

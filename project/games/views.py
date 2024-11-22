@@ -25,7 +25,7 @@ def job_detail(request, job_id):
         game = Game.objects.create(
             user=custom_user,
             job=job,
-            hospital_visited=random.randint(3, 4)
+            hospital_visited=random.randint(1, 3)
         )
 
         return redirect("games:select_house", game_id=game.id)
@@ -81,6 +81,8 @@ def game_start(request, month, time):
     prev_month = game.current_month
     game.current_month = month
     game.is_morning = time
+
+    print(game.hospital_visited)
 
     if game.hospital_visited == month and time == 3:  
         return redirect('games:hospital_event', game_id=game.id)
@@ -174,7 +176,8 @@ def game_start(request, month, time):
         if request.method == 'POST':
             if game.hospital_visited == month:
                 return redirect('games:hospital_event', game_id=game.id)
-            return redirect('games:night_transition', month=month)
+            else:
+                return redirect('games:night_transition', month=month)
         
         return render(request, 'games/night.html', {
             'game': game,

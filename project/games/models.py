@@ -1,5 +1,6 @@
 from django.db import models
 from accounts.models import CustomUser
+from regions.models import Region
 
 class Job(models.Model):
     name = models.CharField(max_length=100)
@@ -22,6 +23,7 @@ class House(models.Model):
 
 class Game(models.Model):
     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='games') # 유저
+    region = models.CharField(max_length=255, default="경상북도 청송군")
     job = models.ForeignKey(Job, on_delete=models.CASCADE) # 직장
     house = models.ForeignKey(House, on_delete=models.CASCADE, null=True) # 집
     created_at = models.DateTimeField(auto_now_add=True) # 시작 시기
@@ -30,9 +32,13 @@ class Game(models.Model):
     current_month = models.IntegerField(default=1) # 달
     is_morning = models.IntegerField(default=1) # 1=오전, 2=오후
     hospital_visited = models.IntegerField(null=True, blank=True) # 병원 방문 달
+    visited_restaurant = models.CharField(max_length=255, null=True, blank=True) # 방문한 맛집
+    cooked_food = models.CharField(max_length=255, null=True, blank=True) # 만든 음식
+    visited_place = models.CharField(max_length=255, null=True, blank=True) # 놀러간 곳
+    play_count = models.IntegerField(default=0)
 
     class Meta:
         ordering = ['-created_at']
-
+    
     def __str__(self):
         return f"Game {self.id} - {self.user.nickname}"

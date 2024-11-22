@@ -2,6 +2,9 @@ from django.shortcuts import render
 from accounts.models import CustomUser
 from django.core.exceptions import ObjectDoesNotExist
 
+def index(request):
+    return render(request, 'main/index.html')
+
 def main(request):
     user = request.user
     if user.is_authenticated:

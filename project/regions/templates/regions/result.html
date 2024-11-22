@@ -3,7 +3,7 @@
 {% endblock %} {% block content %}
 <div class="region_result_info">{{ custom_user.nickname }} 님과 <br />가장 어울리는 지역은</div>
 <div class="rec_region">
-  <a href="{% url 'main:main' %}">{{ recommended_region }}</a>
+  <a href="{% url 'games:select_job' %}">{{ recommended_region }}</a>
 </div>
 
 <div class="info">추천 지역 중 원하는 지역을 선택하세요!</div>

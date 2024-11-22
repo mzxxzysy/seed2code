@@ -54,7 +54,7 @@ def test(request, question_number):
     custom_user = request.user.customuser
 
     current_question = question_number - 1
-    scores = request.session.get('scores', {"경상북도 청송군": 0, "전라남도 곡성군": 0})
+    scores = request.session.get('scores', {"경상북도 청송군": 100, "전라남도 곡성군": 0})
 
     if request.method == "POST":
         selected_choice = request.POST.get("choice")

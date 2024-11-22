@@ -3,7 +3,10 @@
 <link rel="stylesheet" href="{% static 'css/afternoon.css' %}" />
 {% endblock %}
   {% comment %} <p>{{ game.current_month }}월 오후</p> {% endcomment %}
-
+  {% block day_night %}
+    <img src="{%static "img/night.png" %}">
+  {% endblock %}
+  
   {% block game_info %}
   {% if month == 1 %}
   <div>퇴근 시간입니다.</div>
@@ -32,7 +35,7 @@
               <label for="{{ restaurant.name }}" class="label_1">
                 <div>{{ restaurant.name }}</div>
                 <div>{{ restaurant.price }}만원</div>
-                <div>(실제 가격: 20000)</div>
+                <div class="real_price">(실제 가격: {{ restaurant.real_price }}원)</div>
               </label>
             </div>
             {% if forloop.counter|divisibleby:2 %}

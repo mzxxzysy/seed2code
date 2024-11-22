@@ -1,8 +1,11 @@
 
 {% extends 'gamebase.html' %} {% load static %} {% block title %}맛집 탐방{% endblock %} {% block extra_css %}
 <link rel="stylesheet" href="{% static 'css/gamebase.css' %}" />
-<link rel="stylesheet" href="{% static 'css/night.css' %}" />
-{% endblock %}{% block game_info %}
+<link rel="stylesheet" href="{% static 'css/night.css' %}" />{% endblock %}
+{% block day_night %}
+<img src="{%static "img/night.png" %}">
+{% endblock %}
+{% block game_info %}
 <div>사온 재료들로 음식을 만들었습니다!</div>
 {% endblock %} {% block game_content %}
 

@@ -1,7 +1,7 @@
 {% extends 'gamebase.html' %} {% load static %} {% block title %}직업 선택{% endblock %} {% block extra_css %}
 <link rel="stylesheet" href="{% static 'css/gamebase.css' %}" />
 <link rel="stylesheet" href="{% static 'css/select_job.css' %}" />
-{% endblock %} {%block game_info%}
+{% endblock %} {% block day_night %} <img src="{%static "img/day.png" %}"> {% endblock %}{%block game_info%}
 <div>여기는 경상북도 청송군입니다.</div>
 <div>이번 생의 직업을 골라주세요.</div>
 {%endblock%} {% block game_content %}

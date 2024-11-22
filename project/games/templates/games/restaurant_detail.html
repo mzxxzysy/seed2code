@@ -2,15 +2,15 @@
 <link rel="stylesheet" href="{% static 'css/gamebase.css' %}" />
 <link rel="stylesheet" href="{% static 'css/morning.css' %}" />
 {% endblock %}{% block day_night %} <img src="{%static "img/night.png" %}"> {% endblock %}{% block game_info %}
-<div>{{ restaurant.name }}으로 향했습니다.</div>
-<div>{{ restaurant.menu }} 맛이 일품이네요!</div>
+<div><span class="blue">{{ restaurant.name }}</span>으로 향했습니다.</div>
+<div><span class="pink">{{ restaurant.menu }}</span> 맛이 일품이네요!</div>
 {% endblock %} {% block game_content %}
 
 <div class="container">
   {% if game.job.work_image %}
   <img src="{% static restaurant.menu_img %}" />
   {% endif %} {% endblock %}{% block game_info2 %}
-  <div>{{ restaurant.price }}만원을 지출하였습니다.</div>
+  <div><span class="pink">{{ restaurant.price }}만원</span>을 지출하였습니다.</div>
   <form method="post">
     {% csrf_token %}
     <button type="submit" class="next"><img src="{%static "img/game_next_btn.png" %}"></button>

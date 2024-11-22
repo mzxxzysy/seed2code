@@ -12,7 +12,7 @@
 
 {% block game_info %} {% if game.is_morning == 1 %}
 <div>오늘은 휴일이라 축제에 놀러왔습니다.</div>
-<div>지금은 청송사과 축제가 열렸네요!</div>
+<div>지금은 <span class="pink">청송사과 축제</span>가 열렸네요!</div>
 {% elif game.is_morning == 2 %}
 <div>프로그램은 전부 무료랍니다.</div>
 <div>체험해보고 가세요!</div>
@@ -29,11 +29,11 @@
 
 {% block game_info2 %}
 {% if game.is_morning == 1 %}
-<div class="fes_info2">청송군에서는 매우 유명한 청송꿀사과를 특산물로 내세우고 있습니다.</div>
-<div class="fes_info2"> 청송사과는 청송 5일장에서 쉽게 구할 수 있으며 종종 사과를 주제로 한 지역 축제가 열리기도 합니다.</div>
+<div class="fes_info2">청송군에서는 매우 유명한</div> <div class="fes_info2">청송꿀사과를 특산물로 내세우고 있습니다.</div>
+<div class="fes_info2"> 청송사과는 청송 5일장에서 쉽게 구할 수 있으며 종종</div> <div class="fes_info2">사과를 주제로 한 지역 축제가 열리기도 합니다.</div>
 {% elif game.is_morning == 2 %}
-<div class="fes_info2">주요 프로그램으로는 청송사과 퍼레이드, 청송사과 꽃줄 엮기 전국대회 등이 있으며</div>
-<div class="fes_info2"> 만보기가 달린 방망이를 휘두르는 사과난타, 사과풍선 중 황금사과를 찾는 체험 이벤트를 즐길 수 있습니다.</div>
+<div class="fes_info2">주요 프로그램으로는 청송사과 퍼레이드,</div> <div class="fes_info2">청송사과 꽃줄 엮기 전국대회 등이 있으며</div>
+<div class="fes_info2"> 만보기가 달린 방망이를 휘두르는 사과난타, 사과풍선 중</div> <div class="fes_info2">황금사과를 찾는 체험 이벤트를 즐길 수 있습니다.</div>
     {% endif %}
     <form method="post">
         {% csrf_token %}
